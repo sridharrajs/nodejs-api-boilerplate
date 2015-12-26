@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-web-boilerplate",
+  "version": "1.0.0",
+  "description": "A custom MEAN stack boilerplate for web application ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sridharrajs/nodejs-web-boilerplate.git"
+  },
+  "author": "sridhar <me@sridhar.co>",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/sridharrajs/nodejs-web-boilerplate/issues"
+  },
+  "homepage": "https://github.com/sridharrajs/nodejs-web-boilerplate#readme"
+}
