@@ -10,10 +10,40 @@
     "type": "git",
     "url": "git+https://github.com/sridharrajs/nodejs-web-boilerplate.git"
   },
+  "engines": {
+    "npm": ">3.0",
+    "node": ">4.0"
+  },
   "author": "sridhar <me@sridhar.co>",
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/sridharrajs/nodejs-web-boilerplate/issues"
   },
-  "homepage": "https://github.com/sridharrajs/nodejs-web-boilerplate#readme"
+  "homepage": "https://github.com/sridharrajs/nodejs-web-boilerplate#readme",
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jscs": "^2.6.0"
+  },
+  "dependencies": {
+    "async": "^1.5.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.2",
+    "chalk": "^1.1.1",
+    "compress": "^0.99.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "is-valid-email": "0.0.2",
+    "jwt-simple": "^0.4.0",
+    "lodash": "^3.10.1",
+    "moment": "^2.11.0",
+    "mongoose": "^4.3.4",
+    "nodejs-gravatar": "^1.0.2",
+    "qs": "^6.0.1"
+  },
+  "eslintConfig": {
+    "root": true
+  }
 }
