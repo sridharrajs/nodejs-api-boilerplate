@@ -1,0 +1,13 @@
+{
+	"port": 9999,
+	"prod": {
+		"sessionURL": "https://prod-toruk.firebaseio.com/",
+		"mongodb_url":"mongodb://localhost:27017/app",
+		"secure": true
+	},
+	"local": {
+		"sessionURL": "https://toruk-local.firebaseio.com/",
+		"mongodb_url":"mongodb://localhost:27017/app",
+		"secure": false
+	}
+}
