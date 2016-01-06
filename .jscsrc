@@ -1,0 +1,31 @@
+{
+	"esnext": true,
+	"requireCurlyBraces": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do"
+	],
+	"requireSpaceAfterKeywords": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"switch",
+		"return"
+	],
+	"requireSpaceBeforeBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!=="],
+	"requireSemicolons": true,
+	"requireMultiLineTernary": true,
+	"requireSpaceAfterComma": true,
+	"disallowMultipleVarDecl": true,
+	"disallowEmptyBlocks": true,
+	"disallowKeywords": [ "with" ],
+	"disallowMultipleLineBreaks": true,
+	"disallowSpaceBeforeSemicolon": true,
+	"disallowSpacesInsideBrackets": true,
+	"disallowTrailingComma": true,
+	"disallowUnusedParams": true
+}
