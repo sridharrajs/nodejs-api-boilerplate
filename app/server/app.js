@@ -10,21 +10,22 @@ let express = require('express');
 let compression = require('compression');
 
 let authFilter = require('./middlewares/auth-filter');
+let reqHeaderFilter = require('./middlewares/request-header');
 
 let app = express();
 
 app.use(cors());
-//app.use(compression());
-//app.use(bp.json());
-//app.use(bp.urlencoded({
-//	extended: false
-//}));
-//
-//app.use(authFilter.incomingRestriction);
-//app.use(express.static('../client/'));
-//app.set('view engine', 'ejs');
+app.use(compression());
+app.use(bp.json());
+app.use(bp.urlencoded({
+	extended: false
+}));
 
-// app.all('/*', [authFilter.authenticate]);
+app.use(reqHeaderFilter.setHeaders);
+app.use(express.static('../client/'));
+app.set('view engine', 'ejs');
+
+app.all('/*', [authFilter.authenticate]);
 
 app.get('/', function (req, res) {
 	res.status(200).send({

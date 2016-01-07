@@ -9,13 +9,6 @@ let jwt = require('jwt-simple');
 
 let config = require('../../../config');
 
-let incomingRestriction = function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', '*');
-	res.header('Access-Control-Allow-Headers', 'authorization, Content-Type');
-	next();
-};
-
 const NON_AUTH_URLS = [
 	'/users',
 	'/login',
@@ -55,7 +48,6 @@ function getValidURLs() {
 
 module.exports = {
 	authenticate,
-	incomingRestriction,
 	isNonAuthEndPointAccessURL,
 	getValidURLs
 };
