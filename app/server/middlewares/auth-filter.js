@@ -59,5 +59,3 @@ module.exports = {
 	isNonAuthEndPointAccessURL,
 	getValidURLs
 };
-
-module.exports = {};
