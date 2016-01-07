@@ -17,7 +17,7 @@ function getServerByProtocol(config, app) {
 }
 
 class Server {
-	static start() {
+	static start(config) {
 		let server = getServerByProtocol(config, application.getApp());
 		return new Promise((resolve, reject)=> {
 			server.listen(config.port, ()=> {
