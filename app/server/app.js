@@ -22,7 +22,7 @@ app.use(bp.urlencoded({
 }));
 
 app.use(reqHeaderFilter.setHeaders);
-app.use(express.static('../client/'));
+app.use(express.static('./app/client/'));
 app.set('view engine', 'ejs');
 
 app.all('/*', [authFilter.authenticate]);

@@ -4,7 +4,8 @@
   "description": "A custom MEAN stack boilerplate for web application ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-inspector && nodemon --debug server.js"
   },
   "repository": {
     "type": "git",
