@@ -33,7 +33,7 @@ let authenticate = function (req, res, next) {
 		});
 	}
 	try {
-		let decoded = jwt.decode(token, config.FBaseAdminToken);
+		let decoded = jwt.decode(token, config.secret);
 		req.uid = decoded.d.uid;
 		req.teamId = decoded.d.data.teamId;
 		next();
@@ -46,8 +46,22 @@ function getValidURLs() {
 	return NON_AUTH_URLS;
 }
 
+function expiresIn(numDays) {
+	let dateObj = new Date();
+	return dateObj.setDate(dateObj.getDate() + numDays);
+}
+
+let generateToken = function (userId) {
+	let expires = expiresIn(7);
+	return jwt.encode({
+		exp: expires,
+		userId: userId
+	}, config.secret);
+};
+
 module.exports = {
 	authenticate,
 	isNonAuthEndPointAccessURL,
-	getValidURLs
+	getValidURLs,
+	generateToken
 };
