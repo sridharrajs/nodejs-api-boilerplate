@@ -7,7 +7,7 @@
 let https = require('https');
 let http = require('http');
 
-let application = require('../app');
+let application = require('../application');
 
 function getServerByProtocol(config, app) {
 	if (config.secure) {
