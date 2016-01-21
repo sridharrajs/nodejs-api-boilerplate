@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-6 section-border right">
+        <div>
+            <div class="text-uppercase pref-header pref-element">
+                Upload Your Logo
+            </div>
+            <div class="pref-element">
+                <h4 class="sec-text">This Logo Will be included in the first page of the reports.</h4>
+            </div>
+            <div class="pref-element">
+                <button class="btn btn-success sec-text" type="file"> Upload Logo</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6  section-border left">
+        <div>
+            <div class="text-uppercase pref-header pref-element">
+                primary brand color
+            </div>
+            <div class="pref-element">
+                <h4 class="sec-text">This color will be used in titles and few other elements in the reports.</h4>
+            </div>
+            <div style="padding:4px 0px 0px 0px">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="test" id="exampleInputName2" placeholder="Color" style="width:90px">
+						<spectrum-colorpicker ng-model="test" format="'hex'" class="btn"></spectrum-colorpicker>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
