@@ -35,7 +35,6 @@ let authenticate = function (req, res, next) {
 	try {
 		let decoded = jwt.decode(token, config.secret);
 		req.uid = decoded.d.uid;
-		req.teamId = decoded.d.data.teamId;
 		next();
 	} catch (ex) {
 		console.log('Exception ', ex);

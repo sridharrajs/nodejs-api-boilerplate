@@ -33,9 +33,10 @@ app.get('/', function (req, res) {
 	});
 });
 
-process.on('uncaughtException', function (err) {
-	console.error(err.stack);
-});
+process
+	.on('uncaughtException', (err) => {
+		console.error(err.stack);
+	});
 
 function getApp() {
 	return app;
