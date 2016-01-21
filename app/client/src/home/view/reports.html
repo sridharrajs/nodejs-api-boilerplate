@@ -1,0 +1,54 @@
+<div class="base-cont">
+    <div class="cf header-cont">
+        <span class="pull-left custom-header"><h3>Reports</h3></span>
+        <span style="margin-left: 20px;"><button class="btn report-type-btn" ui-sref-active="active" ui-sref="home.reports.sent"> Sent</button> <button class="btn report-type-btn" ui-sref-active="active" ui-sref="home.reports.scheduled"> Scheduled</button></span>
+        <span class="pull-right"><button class="btn btn-success"> Drafts</button>
+	 
+	 <div class="btn-group" uib-dropdown is-open="status.isopen">
+			<button id="single-button" type="button" class="btn btn-success" uib-dropdown-toggle ng-disabled="disabled">
+				Create Report <span class="caret"></span>
+        </button>
+        <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+            <li role="menuitem"><a ui-sref="report">Regular Report</a></li>
+            <li class="divider"></li>
+            <li role="menuitem"><a href="#">Scheduled Report</a></li>
+        </ul>
+    </div>
+    </span>
+</div>
+<ui-view></ui-view>
+<!-- <table class="table" style="margin-top:20px">
+		<thead>
+			<tr>
+				<th class="text-uppercase table-header">Client</th>
+				<th class="text-uppercase table-header">Websites</th>
+				<th class="text-uppercase table-header">Time</th>
+				<th class="text-uppercase table-header">Status</th>
+				<th class="text-uppercase table-header"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="col-md-3">Behance Inc</td>
+				<td class="col-md-2">behance.net</td>
+				<td class="col-md-2">24 Jan@11.00am</td>
+				<td class="col-md-1">Read</td>
+				<td class="col-md-1"><a>View Report  <i class="fa fa-external-link"></i></a></td>
+			</tr>
+			<tr>
+				<td>Behance Inc</td>
+				<td>behance.net</td>
+				<td>24 Jan@12.00pm</td>
+				<td>Read</td>
+				<td class="col-md-1"><a>View Report  <i class="fa fa-external-link"></i></a></td>
+			</tr>
+			<tr>
+				<td>Behance Inc</td>
+				<td>behance.net</td>
+				<td>24 Jan@13.00am</td>
+				<td>Read</td>
+				<td class="col-md-1"><a>View Report  <i class="fa fa-external-link"></i></a></td>
+			</tr>
+		</tbody>
+	</table> -->
+</div>

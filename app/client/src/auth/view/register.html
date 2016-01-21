@@ -1,0 +1,46 @@
+<div class="container">
+<div class="row">
+	<div class="col-md-4 col-md-offset-4 vertical-offset-100">
+		<div class="text-center brand-header">
+			<h4>wp.report</h4>
+		</div>
+		<form name="authCtrl.signupForm" ng-submit="authCtrl.register(authCtrl.signupForm.$valid)" novalidate>
+			<fieldset>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title custom text-uppercase text-center">Register your account</h3>
+					</div>
+					<div class="panel-body">
+						<form accept-charset="UTF-8" role="form">
+							<fieldset>
+								<div class="form-group">
+									<input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" ng-model="authCtrl.user.emailId" required autofocus>
+									<div ng-messages="authCtrl.signupForm.email.$error" role="alert" class="help-block" ng-if="authCtrl.signupForm.email.$touched">
+										<div ng-message="required">This is required.</div>
+										<div ng-message="email">Invalid email.</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<input id="password" name="password" type="password" ng-model="authCtrl.user.password" placeholder="password" class="form-control input-md" required>
+									<div ng-messages="authCtrl.signupForm.password.$error" role="alert" class="help-block" ng-if="authCtrl.signupForm.password.$touched">
+										<div ng-message="required">Password is required.</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-8 text-uppercase" style="padding-left: 0;">
+										<button class="btn btn-success" type="submit" ladda="authCtrl.registerLoading " ng-disabled="authCtrl.signupForm.$invalid">Register</button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<div class="col-md-offset-4">
+			<a class="pull-left text-center" ui-sref="login">Login to My Account</a>
+		</div>
+	</div>
+</div>
+
+</div>
