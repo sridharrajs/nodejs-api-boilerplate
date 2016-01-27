@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
 
 process
 	.on('uncaughtException', (err) => {
-		console.error(err.stack);
+		console.trace(error.stack.split('\t '));
 	});
 
 function getApp() {

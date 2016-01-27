@@ -35,6 +35,6 @@ config
 		console.log(`Starting Server at ${chalk.green(config.port)}`, chalk.blue(info));
 	})
 	.catch((error)=> {
-		console.log(chalk.red(error));
+		console.trace(chalk.red(error.stack.split('\t ')));
 		process.exit(0);
 	});
