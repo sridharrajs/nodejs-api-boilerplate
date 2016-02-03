@@ -11,7 +11,7 @@
 	let selectedServerURL = selectedEnv.serverURL;
 
 	angular
-		.module('wpReports', [
+		.module('myApp', [
 			'ui.router',
 			'ngMessages',
 			'ui.bootstrap',

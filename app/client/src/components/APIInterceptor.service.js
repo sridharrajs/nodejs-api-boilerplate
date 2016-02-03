@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('wpReports')
+	.module('myApp')
 	.service('APIInterceptor', APIInterceptor);
 
 

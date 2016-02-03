@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('wpReports')
+	.module('myApp')
 	.controller('DashboardCtrl', DashboardCtrl);
 
 function DashboardCtrl() {

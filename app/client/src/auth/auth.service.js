@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('wpReports')
+	.module('myApp')
 	.factory('Auth', Auth);
 
 Auth.$inject = ['SERVERURL', '$http', '$window', '$state'];

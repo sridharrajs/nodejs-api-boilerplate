@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.module('users')
+		.module('myApp')
 		.controller('UserController', [
 			'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
 			UserController

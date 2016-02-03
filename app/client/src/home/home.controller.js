@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('wpReports')
+	.module('myApp')
 	.controller('HomeCtrl', HomeCtrl);
 
 function HomeCtrl(Auth, $state, profile, sites) {

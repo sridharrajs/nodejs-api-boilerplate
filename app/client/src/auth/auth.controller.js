@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('wpReports')
+	.module('myApp')
 	.controller('AuthCtrl', AuthCtrl);
 
 AuthCtrl.$inject = ['Auth', '$log', '$state'];
