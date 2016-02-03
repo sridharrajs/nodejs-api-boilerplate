@@ -1,96 +1,98 @@
-(function(){
+(function () {
 
-  angular
-       .module('users')
-       .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
-          UserController
-       ]);
+	'use strict';
 
-  /**
-   * Main Controller for the Angular Material Starter App
-   * @param $scope
-   * @param $mdSidenav
-   * @param avatarsService
-   * @constructor
-   */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q) {
-    var self = this;
+	angular
+		.module('users')
+		.controller('UserController', [
+			'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+			UserController
+		]);
 
-    self.selected     = null;
-    self.users        = [ ];
-    self.selectUser   = selectUser;
-    self.toggleList   = toggleUsersList;
-    self.showContactOptions  = showContactOptions;
+	/**
+	 * Main Controller for the Angular Material Starter App
+	 * @param $scope
+	 * @param $mdSidenav
+	 * @param avatarsService
+	 * @constructor
+	 */
+	function UserController(userService, $mdSidenav, $mdBottomSheet, $log, $q) {
+		var self = this;
 
-    // Load all registered users
+		self.selected = null;
+		self.users = [];
+		self.selectUser = selectUser;
+		self.toggleList = toggleUsersList;
+		self.showContactOptions = showContactOptions;
 
-    userService
-          .loadAllUsers()
-          .then( function( users ) {
-            self.users    = [].concat(users);
-            self.selected = users[0];
-          });
+		// Load all registered users
 
-    // *********************************
-    // Internal methods
-    // *********************************
+		userService
+			.loadAllUsers()
+			.then(function (users) {
+				self.users = [].concat(users);
+				self.selected = users[0];
+			});
 
-    /**
-     * First hide the bottomsheet IF visible, then
-     * hide or Show the 'left' sideNav area
-     */
-    function toggleUsersList() {
-      var pending = $mdBottomSheet.hide() || $q.when(true);
+		// *********************************
+		// Internal methods
+		// *********************************
 
-      pending.then(function(){
-        $mdSidenav('left').toggle();
-      });
-    }
+		/**
+		 * First hide the bottomsheet IF visible, then
+		 * hide or Show the 'left' sideNav area
+		 */
+		function toggleUsersList() {
+			var pending = $mdBottomSheet.hide() || $q.when(true);
 
-    /**
-     * Select the current avatars
-     * @param menuId
-     */
-    function selectUser ( user ) {
-      self.selected = angular.isNumber(user) ? $scope.users[user] : user;
-      self.toggleList();
-    }
+			pending.then(function () {
+				$mdSidenav('left').toggle();
+			});
+		}
 
-    /**
-     * Show the bottom sheet
-     */
-    function showContactOptions($event) {
-        var user = self.selected;
+		/**
+		 * Select the current avatars
+		 * @param menuId
+		 */
+		function selectUser(user) {
+			self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+			self.toggleList();
+		}
 
-        return $mdBottomSheet.show({
-          parent: angular.element(document.getElementById('content')),
-          templateUrl: './src/users/view/contactSheet.html',
-          controller: [ '$mdBottomSheet', ContactPanelController],
-          controllerAs: "cp",
-          bindToController : true,
-          targetEvent: $event
-        }).then(function(clickedItem) {
-          clickedItem && $log.debug( clickedItem.name + ' clicked!');
-        });
+		/**
+		 * Show the bottom sheet
+		 */
+		function showContactOptions($event) {
+			var user = self.selected;
 
-        /**
-         * Bottom Sheet controller for the Avatar Actions
-         */
-        function ContactPanelController( $mdBottomSheet ) {
-          this.user = user;
-          this.actions = [
-            { name: 'Phone'       , icon: 'phone'       , icon_url: 'assets/svg/phone.svg'},
-            { name: 'Twitter'     , icon: 'twitter'     , icon_url: 'assets/svg/twitter.svg'},
-            { name: 'Google+'     , icon: 'google_plus' , icon_url: 'assets/svg/google_plus.svg'},
-            { name: 'Hangout'     , icon: 'hangouts'    , icon_url: 'assets/svg/hangouts.svg'}
-          ];
-          this.submitContact = function(action) {
-            $mdBottomSheet.hide(action);
-          };
-        }
-    }
+			return $mdBottomSheet.show({
+				parent: angular.element(document.getElementById('content')),
+				templateUrl: './src/users/view/contactSheet.html',
+				controller: ['$mdBottomSheet', ContactPanelController],
+				controllerAs: "cp",
+				bindToController: true,
+				targetEvent: $event
+			}).then(function (clickedItem) {
+				clickedItem && $log.debug(clickedItem.name + ' clicked!');
+			});
 
-  }
+			/**
+			 * Bottom Sheet controller for the Avatar Actions
+			 */
+			function ContactPanelController($mdBottomSheet) {
+				this.user = user;
+				this.actions = [
+					{name: 'Phone', icon: 'phone', icon_url: 'assets/svg/phone.svg'},
+					{name: 'Twitter', icon: 'twitter', icon_url: 'assets/svg/twitter.svg'},
+					{name: 'Google+', icon: 'google_plus', icon_url: 'assets/svg/google_plus.svg'},
+					{name: 'Hangout', icon: 'hangouts', icon_url: 'assets/svg/hangouts.svg'}
+				];
+				this.submitContact = function (action) {
+					$mdBottomSheet.hide(action);
+				};
+			}
+		}
+
+	}
 
 })();

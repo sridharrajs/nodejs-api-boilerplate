@@ -1,15 +1,14 @@
 (function () {
 	'use strict';
 
-
-	var enviornment = {
+	let enviornment = {
 		'local': {
 			serverURL: 'http://localhost:9999/api/'
 		}
 	};
 
-	var selectedEnv = enviornment[env];
-	var selectedServerURL = selectedEnv.serverURL;
+	let selectedEnv = enviornment[env];
+	let selectedServerURL = selectedEnv.serverURL;
 
 	angular
 		.module('wpReports', [
@@ -26,12 +25,12 @@
 		.run(initApp);
 
 	function configuration($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-		var SRC_FDLR = 'src/';
-		var AUTH_FDLR = 'auth/';
-		var HOME_FDLR = 'home/';
-		var REPORT_FDLR = 'report/';
-		var PREF_FDLR = 'pref/';
-		var VIEW_FLDR = 'view/';
+		let SRC_FDLR = 'src/';
+		let AUTH_FDLR = 'auth/';
+		let HOME_FDLR = 'home/';
+		let REPORT_FDLR = 'report/';
+		let PREF_FDLR = 'pref/';
+		let VIEW_FLDR = 'view/';
 
 		$stateProvider
 			.state('login', {
@@ -59,20 +58,6 @@
 				controller: 'DashboardCtrl as dashboardCtrl',
 				templateUrl: SRC_FDLR + HOME_FDLR + VIEW_FLDR + '/dashboard.html'
 			})
-			.state('home.reports', {
-				url: '/reports',
-				redirectTo: 'home.reports.sent',
-				controller: 'ReportsCtrl as reportsCtrl',
-				templateUrl: SRC_FDLR + HOME_FDLR + VIEW_FLDR + '/reports.html'
-			})
-			.state('home.reports.sent', {
-				url: '/sent',
-				templateUrl: SRC_FDLR + HOME_FDLR + VIEW_FLDR + '/sentReport.html'
-			})
-			.state('home.reports.scheduled', {
-				url: '/scheduled',
-				templateUrl: SRC_FDLR + HOME_FDLR + VIEW_FLDR + '/scheduledReport.html'
-			})
 			.state('home.preferences', {
 				url: '/preferences',
 				templateUrl: SRC_FDLR + PREF_FDLR + VIEW_FLDR + '/preferences.html'
@@ -93,7 +78,7 @@
 	}
 
 	function isAuthenticated(Auth) {
-		var authToken = Auth.getToken();
+		let authToken = Auth.getToken();
 		if (authToken) {
 			return true;
 		}
@@ -102,7 +87,7 @@
 
 
 	function initApp($rootScope, Auth, $state) {
-		$rootScope.$on('$stateChangeStart', function (event, toState) {
+		$rootScope.$on('$stateChangeStart', (event, toState) => {
 			if (toState.name !== 'login' && toState.name !== 'register') {
 				if (!isAuthenticated(Auth)) {
 					event.preventDefault();
@@ -124,15 +109,19 @@
 
 
 	function getProfile(User, Auth) {
-		return User.getProfile().then(function (data) {
-			return data;
-		});
+		return User
+			.getProfile()
+			.then((data) => {
+				return data;
+			});
 	}
 
 	function getSites(User, Auth) {
-		return User.getSites().then(function (data) {
-			return data;
-		});
+		return User
+			.getSites()
+			.then((data) => {
+				return data;
+			});
 	}
 
 

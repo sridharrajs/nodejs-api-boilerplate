@@ -1,12 +1,15 @@
-angular.module('wpReports')
+'use strict';
+
+angular
+	.module('wpReports')
 	.service('User', User);
 
 function User($http, SERVERURL) {
 	return {
-		getProfile: function () {
+		getProfile: () => {
 			return $http.get(SERVERURL + 'users/me');
 		},
-		getSites: function () {
+		getSites: () => {
 			return $http.get(SERVERURL + 'sites');
 		}
 	};

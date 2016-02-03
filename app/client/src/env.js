@@ -1,1 +1,3 @@
-var env = 'local';
+'use strict';
+
+let env = 'local';

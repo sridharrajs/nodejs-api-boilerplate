@@ -1,37 +1,38 @@
 <div class="container full-height white-bg">
-    <nav class="navbar navbar-default ">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-        		wp.report
-      		</a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-                <ul class="nav navbar-nav">
-                    <li ui-sref-active="active"><a ui-sref='home.dashboard' class="text-uppercase">Dashboard</a></li>
-                    <li ui-sref-active="active"><a ui-sref='home.reports' class="text-uppercase">Reports</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <div class="btn-group" uib-dropdown>
-                        <a class="navbar-brand" id="btn-append-to-to-body" uib-dropdown-toggle>
-                            <img class="profile-pic" ng-src="{{homeCtrl.profile.profile_url}}"></a>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
-                            <li role="menuitem"><a ui-sref="home.preferences">Preferences</a></li>
-                            <li class="divider"></li>
-                            <li role="menuitem"><a ng-click="homeCtrl.logout()">Logout</a></li>
-                        </ul>
-                    </div>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="full-height">
-        <ui-view></ui-view>
-    </div>
+	<nav class="navbar navbar-default ">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					wp.report
+				</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+				<ul class="nav navbar-nav">
+					<li ui-sref-active="active"><a ui-sref='home.dashboard' class="text-uppercase">Dashboard</a></li>
+					<li ui-sref-active="active"><a ui-sref='home.reports' class="text-uppercase">Reports</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<div class="btn-group" uib-dropdown>
+						<a class="navbar-brand" id="btn-append-to-to-body" uib-dropdown-toggle>
+							<img class="profile-pic" ng-src="{{homeCtrl.profile.profile_url}}"></a>
+						<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+							<li role="menuitem"><a ui-sref="home.preferences">Preferences</a></li>
+							<li class="divider"></li>
+							<li role="menuitem"><a ng-click="homeCtrl.logout()">Logout</a></li>
+						</ul>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="full-height">
+		<ui-view></ui-view>
+	</div>
 </div>
