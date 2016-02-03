@@ -10,7 +10,7 @@ let wrapper = require('mongoose-callback-wrapper');
 
 let User = mongoose.model('user');
 
-let attributes = require('../models/user').getAttributes();
+let attributes = require('../models/user').getPublicAttributes();
 
 let add = (item, cb)=> {
 	let user = new User({

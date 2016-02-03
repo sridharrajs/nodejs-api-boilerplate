@@ -40,6 +40,16 @@ function getAttributes() {
 	return ATTRIBUTES;
 }
 
+const PUBLIC_ATTRIBUTES = [
+	'emailId',
+	'profile_url'
+];
+
+function getPublicAttributes() {
+	return PUBLIC_ATTRIBUTES;
+}
+
 module.exports = {
-	getAttributes
+	getAttributes,
+	getPublicAttributes
 };
