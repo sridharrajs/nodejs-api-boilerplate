@@ -16,13 +16,25 @@
 		"switch",
 		"return"
 	],
-	"requireSpaceBeforeBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!=="],
+	"requireSpaceBeforeBinaryOperators": [
+		"+",
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!=="
+	],
 	"requireSemicolons": true,
 	"requireMultiLineTernary": true,
 	"requireSpaceAfterComma": true,
 	"disallowMultipleVarDecl": true,
 	"disallowEmptyBlocks": true,
-	"disallowKeywords": [ "with" ],
+	"disallowKeywords": [
+		"with"
+	],
 	"disallowMultipleLineBreaks": true,
 	"disallowSpaceBeforeSemicolon": true,
 	"disallowSpacesInsideBrackets": true,

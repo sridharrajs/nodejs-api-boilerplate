@@ -27,6 +27,11 @@ config
 		return connectionFactory.connect(config);
 	})
 	.then((info)=> {
+		console.log('Connecting DB ', chalk.blue(info));
+		let models = require('./app/server/models');
+		return models.init();
+	})
+	.then((info)=> {
 		console.log('Initializing DB ', chalk.blue(info));
 		let appServer = require('./app/server/boot/build-server');
 		return appServer.start(config);
@@ -37,4 +42,9 @@ config
 	.catch((error)=> {
 		console.trace(chalk.red(error.stack.split('\t ')));
 		process.exit(0);
+	});
+
+process
+	.on('uncaughtException', (err) => {
+		console.trace(err.stack.split('\t '));
 	});

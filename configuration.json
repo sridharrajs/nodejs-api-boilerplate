@@ -1,11 +1,11 @@
 {
 	"port": 9999,
 	"prod": {
-		"mongodb_url":"mongodb://localhost:27017/app",
+		"mongodb_url": "mongodb://localhost:27017/myApp",
 		"secure": true
 	},
 	"local": {
-		"mongodb_url":"mongodb://localhost:27017/app",
+		"mongodb_url": "mongodb://localhost:27017/myApp",
 		"secure": false
 	}
 }

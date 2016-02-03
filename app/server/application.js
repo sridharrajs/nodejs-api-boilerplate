@@ -14,7 +14,6 @@ let authFilter = require('./middlewares/auth-filter');
 let reqHeaderFilter = require('./middlewares/request-header');
 
 let app = express();
-
 app.use(helmet());
 app.use(cors());
 app.use(compression());
@@ -29,16 +28,12 @@ app.set('view engine', 'ejs');
 
 app.all('/*', [authFilter.authenticate]);
 
-app.get('/', function (req, res) {
-	res.status(200).send({
-		msg: 'Server is up!'
-	});
-});
 
-process
-	.on('uncaughtException', (err) => {
-		console.trace(error.stack.split('\t '));
-	});
+let indexRoutes = require('./routes/index-routes');
+app.use('/', indexRoutes);
+
+let userRoutes = require('./routes/user-routes');
+app.use('/users', userRoutes);
 
 function getApp() {
 	return app;
