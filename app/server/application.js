@@ -8,12 +8,14 @@ let bp = require('body-parser');
 let cors = require('cors');
 let express = require('express');
 let compression = require('compression');
+let helmet = require('helmet');
 
 let authFilter = require('./middlewares/auth-filter');
 let reqHeaderFilter = require('./middlewares/request-header');
 
 let app = express();
 
+app.use(helmet());
 app.use(cors());
 app.use(compression());
 app.use(bp.json());

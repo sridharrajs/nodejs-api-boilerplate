@@ -43,11 +43,13 @@
     "connect": "^3.4.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "helmet": "^1.1.0",
     "is-valid-email": "0.0.2",
     "jwt-simple": "^0.4.0",
     "lodash": "^3.10.1",
     "moment": "^2.11.0",
     "mongoose": "^4.3.4",
+    "mongoose-callback-wrapper": "^1.0.0",
     "nodejs-gravatar": "^1.0.2",
     "qs": "^6.0.1"
   },
