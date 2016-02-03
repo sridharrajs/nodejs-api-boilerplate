@@ -9,10 +9,10 @@ Auth.$inject = ['SERVERURL', '$http', '$window', '$state'];
 function Auth(SERVERURL, $http, $window, $state) {
 	let auth = {
 		login: (data) => {
-			return $http.post(SERVERURL + 'login', data);
+			return $http.post(SERVERURL + 'users/login', data);
 		},
 		signup: (data) => {
-			return $http.post(SERVERURL + 'users', data);
+			return $http.post(SERVERURL + 'users/signup', data);
 		},
 		saveToken: (token) => {
 			return $window.localStorage['authToken'] = token;

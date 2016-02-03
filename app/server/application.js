@@ -26,14 +26,13 @@ app.use(reqHeaderFilter.setHeaders);
 app.use(express.static('./app/client/'));
 app.set('view engine', 'ejs');
 
-app.all('/*', [authFilter.authenticate]);
-
-
 let indexRoutes = require('./routes/index-routes');
-app.use('/', indexRoutes);
+app.use('/status', indexRoutes);
+
+app.all('/api/*', [authFilter.authenticate]);
 
 let userRoutes = require('./routes/user-routes');
-app.use('/users', userRoutes);
+app.use('/api/users', userRoutes);
 
 function getApp() {
 	return app;

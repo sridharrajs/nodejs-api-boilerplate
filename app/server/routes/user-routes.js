@@ -62,18 +62,18 @@ app.post('/login', (req, res) => {
 
 		if (!emailId || !password) {
 			return res.status(400).send({
-				err: 'Please enter proper values!'
+				msg: 'Please enter proper values!'
 			});
 		}
 		if (!isValidEmail(emailId)) {
 			return res.status(400).send({
-				err: 'Please valid emailId'
+				msg: 'Please valid emailId'
 			});
 		}
 		userController.getUserByCredentials(emailId, function (err, items) {
 			if (err || _.isEmpty(items)) {
 				return res.status(403).send({
-					err: 'Invalid emailId/password'
+					msg: 'Invalid emailId/password'
 				});
 			}
 			let userObj = items[0];
@@ -81,7 +81,7 @@ app.post('/login', (req, res) => {
 			bcrypt.compare(password, saltedPwd, (err, isEqual) => {
 				if (!isEqual) {
 					return res.status(403).send({
-						err: 'Invalid emailId/password'
+						msg: 'Invalid emailId/password'
 					});
 				}
 				let userId = userObj._id;
@@ -99,5 +99,18 @@ app.post('/login', (req, res) => {
 	}
 });
 
+app.get('/me', (req, res)=> {
+	let userId = req.uid;
+	userController.getUserByUserId(userId, (err, items) => {
+		if (err) {
+			return res.status(500).send({
+				msg: err
+			});
+		}
+		res.status(200).send({
+			data: items
+		});
+	});
+});
 
 module.exports = app;

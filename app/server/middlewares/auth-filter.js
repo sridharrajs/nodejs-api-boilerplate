@@ -10,9 +10,8 @@ let jwt = require('jwt-simple');
 let config = require('../../../config');
 
 const NON_AUTH_URLS = [
-	'/users',
-	'/login',
-	'/join'
+	'/api/users/login',
+	'/api/users/signup'
 ];
 
 function isNonAuthEndPointAccessURL(url) {
@@ -34,7 +33,7 @@ let authenticate = function (req, res, next) {
 	}
 	try {
 		let decoded = jwt.decode(token, config.secret);
-		req.uid = decoded.d.uid;
+		req.uid = decoded.data.userId;
 		next();
 	} catch (ex) {
 		console.log('Exception ', ex);
@@ -54,7 +53,7 @@ let generateToken = function (userId) {
 	let expires = expiresIn(7);
 	return jwt.encode({
 		exp: expires,
-		userId: userId
+		data: userId
 	}, config.secret);
 };
 

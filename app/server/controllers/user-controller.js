@@ -16,8 +16,7 @@ let add = (item, cb)=> {
 	let user = new User({
 		emailId: item.emailId,
 		password: item.password,
-		profile_url: gravatar.imageUrl(item.emailId),
-		joined_at: Date.now
+		profile_url: gravatar.imageUrl(item.emailId)
 	});
 	user.save((err, newDoc) => {
 		if (err) {
@@ -31,7 +30,7 @@ let add = (item, cb)=> {
 	});
 };
 
-let getUserByCredentials = function (emailId, cb) {
+let getUserByEmailId = function (emailId, cb) {
 	let wrappedCallback = wrapper.wrap(cb, attributes);
 	let query = User.find({
 		emailId: emailId
@@ -39,7 +38,16 @@ let getUserByCredentials = function (emailId, cb) {
 	query.exec(wrappedCallback);
 };
 
+let getUserByUserId = function (userId, cb) {
+	let wrappedCallback = wrapper.wrap(cb, attributes);
+	let query = User.find({
+		"_id": mongoose.Types.ObjectId(userId)
+	});
+	query.exec(wrappedCallback);
+};
+
 module.exports = {
 	add,
-	getUserByCredentials
+	getUserByEmailId,
+	getUserByUserId
 };

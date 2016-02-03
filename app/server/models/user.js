@@ -17,11 +17,12 @@ let schema = new Schema({
 		type: String
 	},
 	profile_url: {
-		type: String
+		type: String,
+		required: true
 	},
 	joined_at: {
-		type: Number,
-		default: Date.now()
+		type: Date,
+		default: Date.now
 	}
 });
 
