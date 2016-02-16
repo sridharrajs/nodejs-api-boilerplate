@@ -5,5 +5,5 @@ angular
 	.controller('DashboardCtrl', DashboardCtrl);
 
 function DashboardCtrl() {
-	var self = this;
+	let self = this;
 }

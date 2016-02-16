@@ -23,17 +23,17 @@ config
 	})
 	.then((info)=> {
 		console.log('Initializing settings ', chalk.blue(info));
-		let connectionFactory = require('./app/server/boot/connection-factory');
+		let connectionFactory = require('./app/boot/connection-factory');
 		return connectionFactory.connect(config);
 	})
 	.then((info)=> {
 		console.log('Connecting DB ', chalk.blue(info));
-		let models = require('./app/server/models');
+		let models = require('./app/models');
 		return models.init();
 	})
 	.then((info)=> {
 		console.log('Initializing DB ', chalk.blue(info));
-		let appServer = require('./app/server/boot/build-server');
+		let appServer = require('./app/boot/build-server');
 		return appServer.start(config);
 	})
 	.then((info)=> {

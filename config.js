@@ -8,7 +8,7 @@ let _ = require('lodash');
 let fs = require('fs');
 
 const ENVS = [
-	'prod',
+	'production',
 	'local'
 ];
 

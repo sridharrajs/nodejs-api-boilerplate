@@ -7,7 +7,7 @@
 let _ = require('lodash');
 let jwt = require('jwt-simple');
 
-let config = require('../../../config');
+let config = require('../../config');
 
 const NON_AUTH_URLS = [
 	'/api/users/login',
@@ -27,8 +27,8 @@ let authenticate = function (req, res, next) {
 	}
 
 	if (!token) {
-		res.status(401).send({
-			err: 'please login'
+		return res.status(401).send({
+			msg: 'please login'
 		});
 	}
 	try {

@@ -4,8 +4,8 @@ angular
 	.module('myApp')
 	.controller('HomeCtrl', HomeCtrl);
 
-function HomeCtrl(Auth, $state, profile, sites) {
-	var self = this;
+function HomeCtrl(Auth, profile, sites) {
+	let self = this;
 	self.logout = logout;
 	self.profile = profile;
 	self.sites = sites;
