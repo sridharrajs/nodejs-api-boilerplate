@@ -23,7 +23,7 @@ app.use(bp.urlencoded({
 }));
 
 app.use(reqHeaderFilter.setHeaders);
-app.use(express.static('./app/client/'));
+app.use(express.static('./public/'));
 app.set('view engine', 'ejs');
 
 let indexRoutes = require('./routes/index-routes');
