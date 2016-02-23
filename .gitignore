@@ -1,4 +1,9 @@
+#Dependencies
 node_modules/
 bower_components/
+
+#Webstorm meta folder
 .idea/
+
+# distribution
 public/

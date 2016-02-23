@@ -15,8 +15,7 @@ let security = require('../middlewares/auth-filter');
 
 let app = express.Router();
 
-app.post('/signup', (req, res) => {
-
+function signUp(req, res) {
 	let body = qs.parse(req.body);
 	let emailId = body.emailId;
 	let password = body.password;
@@ -51,10 +50,9 @@ app.post('/signup', (req, res) => {
 			profile_url: user.profile_url
 		});
 	});
+}
 
-});
-
-app.post('/login', (req, res) => {
+function login(req, res) {
 	try {
 		let body = qs.parse(req.body);
 		let emailId = body.emailId;
@@ -97,9 +95,9 @@ app.post('/login', (req, res) => {
 	} catch (err) {
 		console.log('err', err);
 	}
-});
+}
 
-app.get('/me', (req, res)=> {
+function getMyDetails(req, res) {
 	let userId = req.uid;
 	userController.getUserByUserId(userId, (err, items) => {
 		if (err) {
@@ -111,6 +109,10 @@ app.get('/me', (req, res)=> {
 			data: items
 		});
 	});
-});
+}
+
+app.post('/signup', signUp);
+app.post('/login', login);
+app.get('/me', getMyDetails);
 
 module.exports = app;
