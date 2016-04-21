@@ -10,25 +10,23 @@ let http = require('http');
 let application = require('../application');
 
 function getServerByProtocol(config, app) {
-	if (config.secure) {
-		return https.createServer(config.options, app);
-	}
-	return http.createServer(app);
+    if (config.secure) {
+        return https.createServer(config.options, app);
+    }
+    return http.createServer(app);
 }
 
 class Server {
-	static start(config) {
-		let server = getServerByProtocol(config, application.getApp());
-		return new Promise((resolve, reject)=> {
-			server
-				.listen(config.port, ()=> {
-					resolve('success');
-				})
-				.on('error', (err)=> {
-					reject(err);
-				});
-		});
-	}
+    static start(config) {
+        let server = getServerByProtocol(config, application.getApp());
+        return new Promise((resolve, reject) => {
+            server.listen(config.port, () => {
+                resolve('success');
+            }).on('error', (err) => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Server;

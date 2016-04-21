@@ -19,7 +19,7 @@ app.use(cors());
 app.use(compression());
 app.use(bp.json());
 app.use(bp.urlencoded({
-	extended: false
+    extended: false
 }));
 
 app.use(reqHeaderFilter.setHeaders);
@@ -35,9 +35,9 @@ let userRoutes = require('./routes/user-routes');
 app.use('/api/users', userRoutes);
 
 function getApp() {
-	return app;
+    return app;
 }
 
 module.exports = {
-	getApp
+    getApp
 };
