@@ -18,7 +18,7 @@ const FILES = {
     CLIENT_FILES: ['client/**/*.js', 'client/**/*.css', 'client/**/*.html']
 };
 
-const DIST = 'public/';
+const DIST = 'dist/';
 
 gulp.task('compile-js', () => {
     return gulp
@@ -63,7 +63,7 @@ gulp.task('stream', () => {
 gulp.task('browser-sync', () => {
     browserSync.init({
         server: {
-            baseDir: './public/'
+            baseDir: './dist/'
         }
     });
 });
