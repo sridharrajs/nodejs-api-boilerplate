@@ -38,9 +38,8 @@ class Config {
 	}
 
 	static init(HOST_ENVIRONMENT) {
-		this.port = CONFIGURATIONS.port;
-
 		let settings = CONFIGURATIONS[HOST_ENVIRONMENT];
+		this.port = settings.port;
 		this.secure = settings.secure;
 		this.mongdbUrl = settings.mongodb_url;
 		this.secret = process.env.MY_SECRET;
