@@ -56,7 +56,7 @@ gulp.task('lints', (callback) => {
     runSequence('jshint', 'eslint', 'jscs', callback);
 });
 
-gulp.task('stream', () => {
+gulp.task('serve', () => {
     gulp.watch(FILES.CLIENT_FILES, ['compile-js', 'copy-html-css']);
 });
 
@@ -74,6 +74,6 @@ gulp.task('copy-html-css', () => {
         .pipe(gulp.dest(DIST));
 });
 
-gulp.task('default', (callback) => {
+gulp.task('install', (callback) => {
     runSequence('compile-js', 'copy-html-css', callback);
 });

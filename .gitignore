@@ -2,8 +2,9 @@
 node_modules/
 bower_components/
 
-#Webstorm meta folder
+#Webstorm/text editor meta
 .idea/
+.tern-port
 
 # distribution
-public/
+dist/
