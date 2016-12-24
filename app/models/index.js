@@ -7,18 +7,18 @@
 let _ = require('lodash');
 
 let modals = [
-	'user'
+  'user'
 ];
 
 function init() {
-	_.each(modals, (model)=> {
-		require(`./${model}`);
-	});
-	return Promise.resolve('Success');
+  _.each(modals, (model)=> {
+    require(`./${model}`);
+  });
+  return Promise.resolve('Success');
 }
 
 module.exports = {
-	init
+  init
 };
 
 

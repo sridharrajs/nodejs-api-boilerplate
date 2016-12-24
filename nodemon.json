@@ -1,8 +1,8 @@
 {
-    "verbose": false,
-    "ignore": [
-	"public/*",
-	"client/*",
-	"dist/*"
-    ]
+  "verbose": false,
+  "ignore": [
+    "public/*",
+    "client/*",
+    "dist/*"
+  ]
 }

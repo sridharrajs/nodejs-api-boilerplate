@@ -6,5 +6,12 @@ bower_components/
 .idea/
 .tern-port
 
-# distribution
+#Distribution
 dist/
+
+#Emacs
+*~
+*#
+
+#tern
+.tern-port
