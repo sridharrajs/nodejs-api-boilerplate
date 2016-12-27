@@ -34,10 +34,4 @@ app.all('/api/*', [authFilter.authenticate]);
 let userRoutes = require('./routes/user-routes');
 app.use('/api/users', userRoutes);
 
-function getApp() {
-  return app;
-}
-
-module.exports = {
-  getApp
-};
+module.exports = app;

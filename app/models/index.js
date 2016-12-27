@@ -4,22 +4,18 @@
 
 'use strict';
 
-let _ = require('lodash');
+let requireDir = require('require-dir');
 
-let modals = [
-  'user'
-];
+class Models {
 
-function init() {
-  _.each(modals, (model)=> {
-    require(`./${model}`);
-  });
-  return Promise.resolve('Success');
+  static init() {
+    requireDir('./');
+    return Promise.resolve('Success');
+  }
+  
 }
 
-module.exports = {
-  init
-};
 
+module.exports = Models;
 
 

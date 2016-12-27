@@ -6,7 +6,6 @@
 
 let express = require('express');
 let app = express.Router();
-let qs = require('qs');
 
 app.get('/', (req, res) => {
   res.status(200).send({
@@ -14,4 +13,6 @@ app.get('/', (req, res) => {
   });
 });
 
-module.exports = app;
+module.exports = (indexApp) => {
+  indexApp.use('/', app);
+};

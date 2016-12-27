@@ -44,10 +44,10 @@ function signUp(req, res) {
     let token = security.generateToken({
       userId: user._id
     });
-    res.status(200).send({
+    return res.status(200).send({
       msg: 'User created successfully!',
       token: token,
-      profile_url: user.profile_url
+      profile_url: user.gravatar_url
     });
   });
 }
@@ -68,7 +68,7 @@ function login(req, res) {
         msg: 'Please valid emailId'
       });
     }
-    userController.getUserByCredentials(emailId, function (err, items) {
+    userController.getUserByCredentials(emailId,  (err, items) => {
       if (err || _.isEmpty(items)) {
         return res.status(403).send({
           msg: 'Invalid emailId/password'
@@ -88,7 +88,7 @@ function login(req, res) {
         });
         res.status(200).send({
           token: token,
-          profile_url: userObj.profile_url
+          profile_url: userObj.gravatar_url
         });
       });
     });
@@ -105,7 +105,7 @@ function getMyDetails(req, res) {
         msg: err
       });
     }
-    res.status(200).send({
+    return res.status(200).send({
       data: items
     });
   });
@@ -115,4 +115,6 @@ app.post('/signup', signUp);
 app.post('/login', login);
 app.get('/me', getMyDetails);
 
-module.exports = app;
+module.exports = (indexApp) => {
+  indexApp.use('/users', app);
+}

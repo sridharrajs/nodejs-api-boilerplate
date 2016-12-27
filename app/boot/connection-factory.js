@@ -23,5 +23,4 @@ class ConnectionFactory {
   
 }
 
-
 module.exports = ConnectionFactory;
