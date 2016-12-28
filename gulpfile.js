@@ -9,7 +9,6 @@ const jscs = require('gulp-jscs');
 const jshint = require('gulp-jshint');
 const gulp = require('gulp');
 const runSequence = require('run-sequence');
-const watch = require('gulp-watch');
 
 const FILES = {
   SERVER_JS_FILES: ['gulpfile.js', 'app/**/*.js'],
