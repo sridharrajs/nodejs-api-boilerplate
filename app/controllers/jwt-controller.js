@@ -4,7 +4,6 @@
 
 'use strict';
 
-let _ = require('lodash');
 let jwt = require('jwt-simple');
 
 let config = require('../config');
@@ -26,7 +25,7 @@ class JWTController {
 
   static decodeToken(token) {
     try {
-      return  jwt.decode(token, config.secret);
+      return jwt.decode(token, config.secret);
     } catch(err) {
       console.log('err ', err.stack);
     }

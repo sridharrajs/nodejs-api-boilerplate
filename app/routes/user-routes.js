@@ -117,4 +117,4 @@ app.get('/me', getMyDetails);
 
 module.exports = (indexApp) => {
   indexApp.use('/users', app);
-}
+};

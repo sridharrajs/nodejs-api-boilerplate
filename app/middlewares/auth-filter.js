@@ -15,7 +15,7 @@ function authenticate(req, res, next) {
   }
 
   let userId = jwtController.decode(token);
-  if(!userId){
+  if (!userId) {
     return res.status(401).send({
       msg: 'please login'
     });    

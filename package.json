@@ -49,8 +49,14 @@
     "connect": "^3.4.0",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^1.1.1",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^2.0.4",
+    "gulp-watch": "^4.3.11",
     "helmet": "^1.1.0",
     "is-valid-email": "0.0.2",
+    "jshint": "^2.9.4",
     "jwt-simple": "^0.4.0",
     "lodash": "^3.10.1",
     "moment": "^2.11.0",
@@ -59,6 +65,7 @@
     "nodejs-gravatar": "^1.0.2",
     "qs": "^6.0.1",
     "require-dir": "^0.3.1",
+    "run-sequence": "^1.2.2",
     "underscore.string": "^3.2.3"
   },
   "eslintConfig": {
