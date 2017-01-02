@@ -26,7 +26,7 @@ class JWTController {
   static decodeToken(token) {
     try {
       return jwt.decode(token, config.secret);
-    } catch(err) {
+    } catch (err) {
       console.log('err ', err.stack);
     }
   }
