@@ -2,12 +2,10 @@
  * Created by sridharrajs.
  */
 
-const babel = require('gulp-babel');
-const browserSync = require('browser-sync').create();
-const eslint = require('gulp-eslint');
-const jscs = require('gulp-jscs');
-const jshint = require('gulp-jshint');
 const gulp = require('gulp');
+const babel = require('gulp-babel');
+const eslint = require('gulp-eslint');
+const jshint = require('gulp-jshint');
 const runSequence = require('run-sequence');
 
 const FILES = {
@@ -28,15 +26,6 @@ gulp.task('compile-js', () => {
     .pipe(gulp.dest(DIST));
 });
 
-gulp.task('jscs', () => {
-  return gulp.src(FILES.SERVER_JS_FILES)
-    .pipe(jscs({
-      fix: false
-    }))
-    .pipe(jscs.reporter())
-    .pipe(jscs.reporter('fail'));
-});
-
 gulp.task('jshint', () => {
   return gulp.src(FILES.SERVER_JS_FILES)
     .pipe(jshint())
@@ -52,19 +41,11 @@ gulp.task('eslint', () => {
 });
 
 gulp.task('lints', (callback) => {
-  runSequence('jshint', 'eslint', 'jscs', callback);
+  runSequence('jshint', 'eslint', callback);
 });
 
 gulp.task('serve', () => {
   gulp.watch(FILES.CLIENT_FILES, ['compile-js', 'copy-html-css']);
-});
-
-gulp.task('browser-sync', () => {
-  browserSync.init({
-    server: {
-      baseDir: './dist/'
-    }
-  });
 });
 
 gulp.task('copy-html-css', () => {
