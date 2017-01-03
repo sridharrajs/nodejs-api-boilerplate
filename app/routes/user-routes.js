@@ -4,111 +4,100 @@
 
 'use strict';
 
-const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
 const express = require('express');
 const isValidEmail = require('is-valid-email');
 const qs = require('qs');
 
 let userController = require('../controllers/user-controller');
+let security = require('../middleware/auth-filter');
 
 function signUp(req, res) {
   let body = qs.parse(req.body);
-  let emailId = body.emailId;
+  let email = body.email;
   let password = body.password;
 
-  if (!emailId || !password) {
+  if (!email || !password) {
     return res.status(400).send({
       err: 'Please enter proper values!'
     });
   }
-  if (!isValidEmail(emailId)) {
+  
+  if (!isValidEmail(email)) {
     return res.status(400).send({
       err: 'Please valid emailId'
     });
   }
 
-  let encryptedPwd = bcrypt.hashSync(password);
-  let user = {
-    emailId: emailId,
-    password: encryptedPwd
-  };
-
-  userController.add(user, (err, user) => {
-    if (err) {
-      return res.status(500).send();
-    }
-    let token = security.generateToken({
-      userId: user._id
-    });
+  userController.add({
+    email: email,
+    password: bcrypt.hashSync(password)
+  }).then((user) => {
     return res.status(200).send({
       msg: 'User created successfully!',
-      token: token,
+      token: security.generateToken({
+        userId: user._id
+      }),
       profile_url: user.gravatar_url
     });
+  }).catch(() => {
+    return res.status(500).send();
   });
 }
 
 function login(req, res) {
-  try {
-    let body = qs.parse(req.body);
-    let emailId = body.emailId;
-    let password = body.password;
+  let body = qs.parse(req.body);
+  let email = body.email;
+  let password = body.password;
 
-    if (!emailId || !password) {
-      return res.status(400).send({
-        msg: 'Please enter proper values!'
-      });
-    }
-    if (!isValidEmail(emailId)) {
-      return res.status(400).send({
-        msg: 'Please valid emailId'
-      });
-    }
-    userController.getUserByCredentials(emailId,  (err, items) => {
-      if (err || _.isEmpty(items)) {
-        return res.status(403).send({
-          msg: 'Invalid emailId/password'
-        });
-      }
-      let userObj = items[0];
-      let saltedPwd = userObj.password;
-      bcrypt.compare(password, saltedPwd, (err, isEqual) => {
+  if (!email || !password) {
+    return res.status(400).send({
+      msg: 'Please enter proper values!'
+    });
+  }
+  
+  if (!isValidEmail(email)) {
+    return res.status(400).send({
+      msg: 'Please valid email'
+    });
+  }
+
+  userController.getUserByEmail(email).then((userObj) => {
+    let saltedPwd = userObj.password;    
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(password, saltedPwd, (err, isEqual) => {      
         if (!isEqual) {
-          return res.status(403).send({
-            msg: 'Invalid emailId/password'
-          });
+          return reject('Invalid email/password');
         }
-        let userId = userObj._id;
-        let token = security.generateToken({
-          userId: userId
-        });
-        res.status(200).send({
-          token: token,
-          profile_url: userObj.gravatar_url
-        });
+        return resolve(userObj);
       });
     });
-  } catch (err) {
-    console.log('err', err);
-  }
-}
-
-function getMyDetails(req, res) {
-  let userId = req.uid;
-  userController.getUserByUserId(userId, (err, items) => {
-    if (err) {
-      return res.status(500).send({
-        msg: err
-      });
-    }
+  }).then((userObj) => {
     return res.status(200).send({
-      data: items
+      token: security.generateToken({
+        userId: userObj._id
+      }),
+      profile_url: userObj.gravatar_url
+    });
+  }).catch(() => {
+    return res.status(403).send({
+      msg: 'Invalid email/password'
     });
   });
 }
 
-let security = require('../middleware/auth-filter');
+function getMyDetails(req, res) {
+  let userId = req.uid;
+  userController.getUserByUserId(userId).then((items) => {
+    return res.status(200).send({
+      data: items
+    });
+  }).catch((err) => {
+    return res.status(500).send({
+      msg: err
+    });
+  });
+}
 
 let app = express.Router();
 app.post('/signup', signUp);

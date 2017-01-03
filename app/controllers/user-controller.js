@@ -20,7 +20,7 @@ class UserController {
     return user.save();
   }
 
-  static getUserByEmailId(email) {
+  static getUserByEmail(email) {
     return User.find({
       email: email
     }).exec();
