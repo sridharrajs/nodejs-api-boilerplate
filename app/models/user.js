@@ -30,4 +30,6 @@ let schema = new Schema({
   }
 });
 
+mongoose.model('user', schema);
+
 module.exports = schema;

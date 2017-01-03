@@ -9,11 +9,8 @@ let fs = require('fs');
 
 const ENVS = [
   'production',
-  'asdasdasd',
   'local'
 ];
-
-const CONFIGURATIONS = JSON.parse(fs.readFileSync('./configuration.json', 'utf-8'));
 
 class Config {
 
@@ -38,7 +35,7 @@ class Config {
   }
 
   static init(HOST_ENVIRONMENT) {
-    let settings = CONFIGURATIONS[HOST_ENVIRONMENT];
+    let settings = JSON.parse(fs.readFileSync(`./env/${HOST_ENVIRONMENT}.json`, 'utf-8'));
     this.port = settings.port;
     this.secure = settings.secure;
     this.mongdbUrl = settings.mongodb_url;

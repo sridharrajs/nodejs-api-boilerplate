@@ -4,21 +4,14 @@
 
 'use strict';
 
-let https = require('https');
 let http = require('http');
 
-let application = require('../application');
-
-function getServerByProtocol(config, app) {
-  if (config.secure) {
-    return https.createServer(config.options, app);
-  }
-  return http.createServer(app);
-}
+let app = require('../application');
 
 class Server {
+
   static start(config) {
-    let server = getServerByProtocol(config, application.getApp());
+    let server = http.createServer(app);
     return new Promise((resolve, reject) => {
       server.listen(config.port, () => {
         resolve('success');
@@ -27,6 +20,7 @@ class Server {
       });
     });
   }
+  
 }
 
 module.exports = Server;

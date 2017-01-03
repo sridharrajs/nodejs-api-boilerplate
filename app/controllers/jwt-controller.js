@@ -6,7 +6,7 @@
 
 let jwt = require('jwt-simple');
 
-let config = require('../config');
+let config = require('../../config');
 
 function expiresIn(numDays) {
   let dateObj = new Date();

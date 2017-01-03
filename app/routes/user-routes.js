@@ -11,9 +11,6 @@ const isValidEmail = require('is-valid-email');
 const qs = require('qs');
 
 let userController = require('../controllers/user-controller');
-let security = require('../middlewares/auth-filter');
-
-let app = express.Router();
 
 function signUp(req, res) {
   let body = qs.parse(req.body);
@@ -111,9 +108,12 @@ function getMyDetails(req, res) {
   });
 }
 
+let security = require('../middleware/auth-filter');
+
+let app = express.Router();
 app.post('/signup', signUp);
 app.post('/login', login);
-app.get('/me', getMyDetails);
+app.get('/me', [security], getMyDetails);
 
 module.exports = (indexApp) => {
   indexApp.use('/users', app);

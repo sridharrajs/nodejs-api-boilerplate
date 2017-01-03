@@ -7,8 +7,7 @@
 let mongoose = require('mongoose');
 let gravatar = require('nodejs-gravatar');
 
-let schema = require('../models/user');
-let User = mongoose('user', schema);
+let User = mongoose.model('user');
 
 class UserController {
   
