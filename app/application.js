@@ -21,10 +21,7 @@ app.use(bp.urlencoded({
 }));
 
 let reqHeaders = require('./middleware/request-header');
-
 app.use(reqHeaders);
-app.use(express.static('./public/'));
-app.set('view engine', 'ejs');
 
 let indexRoutes = require('./routes/index-routes');
 indexRoutes(app);

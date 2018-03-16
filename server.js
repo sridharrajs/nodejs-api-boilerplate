@@ -8,7 +8,7 @@ let chalk = require('chalk');
 
 let config = require('./config');
 
-const HOST_ENVIRONMENT = process.env.NODE_ENV;
+const HOST_ENVIRONMENT = process.env.NODE_ENV || 'local';
 const MY_SECRET = process.env.MY_SECRET;
 
 config.isValidEnv(HOST_ENVIRONMENT).then((info) => {

@@ -39,12 +39,6 @@
       2,
       "never"
     ],
-    "no-empty": [
-      2,
-      {
-        "allowEmptyCatch": true
-      }
-    ],
     "no-with": 2,
     "semi-spacing": [
       2,
@@ -56,19 +50,11 @@
     "comma-dangle": [
       2,
       "never"
-    ],
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "after-used"
-      }
     ]
   },
   "env": {
     "es6": true,
     "node": true
   },
-  "indent": 2,
   "extends": "eslint:recommended"
 }

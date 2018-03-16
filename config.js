@@ -9,13 +9,14 @@ let fs = require('fs');
 
 const ENVS = [
   'production',
+  'development',
   'local'
 ];
 
 class Config {
 
   static isValidEnv(HOST_ENV) {
-    return new Promise((resolve, reject)=> {
+    return new Promise((resolve, reject) => {
       if (_.contains(ENVS, HOST_ENV)) {
         resolve('Success');
       } else {
@@ -25,7 +26,7 @@ class Config {
   }
 
   static isSecretSet(MY_SECRET) {
-    return new Promise((resolve, reject)=> {
+    return new Promise((resolve, reject) => {
       if (MY_SECRET) {
         resolve('Success');
       } else {
@@ -38,7 +39,7 @@ class Config {
     let settings = JSON.parse(fs.readFileSync(`./env/${HOST_ENVIRONMENT}.json`, 'utf-8'));
     this.port = settings.port;
     this.secure = settings.secure;
-    this.mongdbUrl = settings.mongodb_url;
+    this.mongodbUrl = settings.mongodb_url;
     this.secret = process.env.MY_SECRET;
     return Promise.resolve('Success');
   }

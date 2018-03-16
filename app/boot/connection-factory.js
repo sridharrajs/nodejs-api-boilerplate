@@ -8,19 +8,23 @@ let mongoose = require('mongoose');
 
 let db = mongoose;
 
+db.Promise = global.Promise;
+
 class ConnectionFactory {
-  
+
   static connect(config) {
-    db.connect(config.mongdbUrl);
+    db.connect(config.mongodbUrl, {
+      useMongoClient: true
+    });
     return new Promise((resolve, reject) => {
-      db.connection.on('open', function() {
-        resolve('Success');
-      }).on('error', function(err) {
+      db.connection.on('open', () => {
+        resolve('SUCCESS');
+      }).on('error', (err) => {
         reject(err);
       });
     });
   }
-  
+
 }
 
 module.exports = ConnectionFactory;
