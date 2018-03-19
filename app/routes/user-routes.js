@@ -6,28 +6,12 @@
 
 const bcrypt = require('bcrypt-nodejs');
 const express = require('express');
-const isValidEmail = require('is-valid-email');
-const qs = require('qs');
 
 let userController = require('../controllers/user-controller');
 let security = require('../middleware/auth-filter');
 
 function signUp(req, res) {
-  let body = qs.parse(req.body);
-  let email = body.email;
-  let password = body.password;
-
-  if (!email || !password) {
-    return res.status(400).send({
-      err: 'Please enter proper values!'
-    });
-  }
-  
-  if (!isValidEmail(email)) {
-    return res.status(400).send({
-      err: 'Please valid emailId'
-    });
-  }
+  let {email, password} = req.body;
 
   userController.add({
     email: email,
@@ -46,26 +30,12 @@ function signUp(req, res) {
 }
 
 function login(req, res) {
-  let body = qs.parse(req.body);
-  let email = body.email;
-  let password = body.password;
-
-  if (!email || !password) {
-    return res.status(400).send({
-      msg: 'Please enter proper values!'
-    });
-  }
-  
-  if (!isValidEmail(email)) {
-    return res.status(400).send({
-      msg: 'Please valid email'
-    });
-  }
+  let {email, password} = req.body;
 
   userController.getUserByEmail(email).then((userObj) => {
-    let saltedPwd = userObj.password;    
+    let saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
-      bcrypt.compare(password, saltedPwd, (err, isEqual) => {      
+      bcrypt.compare(password, saltedPwd, (err, isEqual) => {
         if (!isEqual) {
           return reject('Invalid email/password');
         }
@@ -100,8 +70,14 @@ function getMyDetails(req, res) {
 }
 
 let app = express.Router();
-app.post('/signup', signUp);
-app.post('/login', login);
+
+let validator = [
+  require('../middleware/validator/user-validator'),
+  require('../middleware/validator/valid-email-validator')
+];
+
+app.post('/signup', validator, signUp);
+app.post('/login', validator, login);
 app.get('/me', [security], getMyDetails);
 
 module.exports = (indexApp) => {
