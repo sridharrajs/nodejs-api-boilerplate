@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "API - Development",
+      "script": "./server.js",
+      "watch": false,
+      "max_restarts": 10,
+      "max_memory_restart": "4G"
+    }
+  ]
+}

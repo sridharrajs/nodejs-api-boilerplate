@@ -14,6 +14,10 @@ This is a minimalistic Nodejs API boilerplate
 
 2. Install the dependencies using `npm install`  
 
+## Deployment
+
+You need to use [pm2](http://pm2.keymetrics.io/) for deploying nodejs application. Application configurations are in `pm2_configs/` folder
+
 
 ## License
 
