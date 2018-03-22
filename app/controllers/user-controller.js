@@ -10,28 +10,39 @@ let gravatar = require('nodejs-gravatar');
 let User = mongoose.model('user');
 
 class UserController {
-  
-  static add(item){
+
+  static add(item) {
     let user = new User({
       email: item.email,
       password: item.password,
-      gravatar_url: gravatar.imageUrl(item.emailId)
+      gravatar_url: gravatar.imageUrl(item.email)
     });
     return user.save();
   }
 
-  static getUserByEmail(email) {
-    return User.find({
-      email: email
-    }).exec();
+  static updatePassword(user) {
+    return User.findOneAndUpdate({
+      email: user.email
+    }, {
+      password: user.password
+    }, {
+      upsert: false,
+      new: true
+    });
   }
-  
-  static getUserByUserId (userId) {
+
+  static getUserByEmail(email) {
+    return User.findOne({
+      email: email
+    }).lean().exec();
+  }
+
+  static getUserByUserId(userId) {
     return User.findById({
       _id: userId
-    }).exec();
+    }).lean().exec();
   }
-  
+
 }
 
 module.exports = UserController;

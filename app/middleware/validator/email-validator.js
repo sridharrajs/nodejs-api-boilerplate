@@ -11,6 +11,8 @@ function validateEmail(req, res, next) {
     });
   }
 
+  req.body.email = email.toLocaleLowerCase();
+
   next();
 }
 

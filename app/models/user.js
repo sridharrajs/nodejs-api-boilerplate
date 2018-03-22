@@ -9,6 +9,9 @@ let Schema = mongoose.Schema;
 
 let schema = new Schema({
   email: {
+    lowercase: true,
+    trim: true,
+    unique: true,
     required: true,
     type: String
   },
@@ -21,10 +24,12 @@ let schema = new Schema({
     required: true
   },
   created_at: {
+    select: false,
     type: Date,
     default: Date.now
   },
   updated_at: {
+    select: false,
     type: Date,
     default: Date.now
   }
