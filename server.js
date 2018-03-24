@@ -5,8 +5,13 @@
 'use strict';
 
 let chalk = require('chalk');
-
 let config = require('./config');
+let dotenv = require('dotenv').config();
+
+if(dotenv.error){
+  console.trace(chalk.red('.env file is missing'));
+  process.exit(0);
+}
 
 const HOST_ENVIRONMENT = process.env.NODE_ENV || 'local';
 const MY_SECRET = process.env.MY_SECRET;
@@ -32,10 +37,10 @@ config.isValidEnv(HOST_ENVIRONMENT).then((info) => {
 }).then((info) => {
   console.log(`Starting Server at ${chalk.green(config.port)}`, chalk.blue(info));
 }).catch((error) => {
-  console.trace(chalk.red(error.stack.split('\t ')));
+  console.trace(chalk.red(error.message));
   process.exit(0);
 });
 
-process.on('uncaughtException', (err) => {
-  console.trace(err.stack.split('\t '));
+process.on('uncaughtException', (error) => {
+  console.trace(error.stack.split('\t '));
 });
