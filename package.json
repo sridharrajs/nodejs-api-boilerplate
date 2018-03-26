@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node-inspector & nodemon --debug server.js"
+    "start": "node-inspector & nodemon --inspect server.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "compression": "^1.6.0",
     "connect": "^3.4.0",
     "cors": "^2.7.1",
+    "dotenv": "^5.0.1",
     "eslint": "^1.10.3",
     "express": "^4.13.3",
     "helmet": "^1.1.0",

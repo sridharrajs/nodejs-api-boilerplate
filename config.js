@@ -20,7 +20,7 @@ class Config {
       if (_.contains(ENVS, HOST_ENV)) {
         resolve('Success');
       } else {
-        reject('Failed');
+        reject({message: 'Failed'});
       }
     });
   }
@@ -30,20 +30,18 @@ class Config {
       if (MY_SECRET) {
         resolve('Success');
       } else {
-        reject('Failed');
+        reject({message: 'Set MY_SECRET in .env file'});
       }
     });
   }
 
-  static init(HOST_ENVIRONMENT) {
-    let settings = JSON.parse(fs.readFileSync(`./env/${HOST_ENVIRONMENT}.json`, 'utf-8'));
-    this.port = settings.port;
-    this.secure = settings.secure;
-    this.mongodbUrl = settings.mongodb_url;
+  static init() {
+    this.port = process.env.PORT;
+    this.secure = process.env.SECURE;
+    this.mongodbUrl =  process.env.MONGODB_URL;
     this.secret = process.env.MY_SECRET;
     return Promise.resolve('Success');
   }
-
 }
 
 module.exports = Config;
