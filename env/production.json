@@ -1,5 +1,0 @@
-{
-  "port": 9999,
-  "mongodb_url": "mongodb://localhost:27017/myApp",
-  "secure": true
-}
