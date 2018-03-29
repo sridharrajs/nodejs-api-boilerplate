@@ -16,7 +16,7 @@ class Config {
 
   static isValidEnv(HOST_ENV) {
     return new Promise((resolve, reject) => {
-      if (_.contains(ENVS, HOST_ENV)) {
+      if (_.includes(ENVS, HOST_ENV)) {
         resolve('Success');
       } else {
         reject({message: 'Failed'});
@@ -37,7 +37,7 @@ class Config {
   static init() {
     this.port = process.env.PORT;
     this.secure = process.env.SECURE;
-    this.mongodbUrl =  process.env.MONGODB_URL;
+    this.mongodbUrl = process.env.MONGODB_URL;
     this.secret = process.env.MY_SECRET;
     return Promise.resolve('Success');
   }
