@@ -8,7 +8,7 @@ let chalk = require('chalk');
 let config = require('./config');
 let dotenv = require('dotenv').config();
 
-if(dotenv.error){
+if (dotenv.error) {
   console.trace(chalk.red('.env file is missing'));
   process.exit(0);
 }
@@ -42,5 +42,5 @@ config.isValidEnv(HOST_ENVIRONMENT).then((info) => {
 });
 
 process.on('uncaughtException', (error) => {
-  console.trace(error.stack.split('\t '));
+  console.trace(error.stack);
 });
