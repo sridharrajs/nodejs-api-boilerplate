@@ -39,6 +39,7 @@
     "dotenv": "^5.0.1",
     "eslint": "^1.10.3",
     "express": "^4.13.3",
+    "express-validator": "^5.1.2",
     "helmet": "^1.1.0",
     "is-valid-email": "0.0.2",
     "jshint": "^2.9.5",

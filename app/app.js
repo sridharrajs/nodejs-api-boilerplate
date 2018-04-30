@@ -8,6 +8,7 @@ let bp = require('body-parser');
 let cors = require('cors');
 let express = require('express');
 let compression = require('compression');
+let expressValidator = require('express-validator');
 let helmet = require('helmet');
 
 let app = express();
@@ -20,6 +21,8 @@ app.use(bp.urlencoded({
   extended: false
 }));
 
+app.use(expressValidator());
+
 let reqHeaders = require('./middleware/request-header');
 app.use(reqHeaders);
 
@@ -28,5 +31,8 @@ indexRoutes(app);
 
 let userRoutes = require('./routes/user-routes');
 userRoutes(app);
+
+let meRoutes = require('./routes/me-routes');
+meRoutes(app);
 
 module.exports = app;
