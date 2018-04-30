@@ -1,51 +1,49 @@
-/**
- * Created by sridharrajs.
- */
-
 'use strict';
 
+let express = require('express');
+let app = express.Router();
 const bcrypt = require('bcrypt-nodejs');
-const express = require('express');
 
+let security = require('../middleware/auth-filter');
 let userController = require('../controllers/user-controller');
 let jwtController = require('../controllers/jwt-controller');
 
-function signUp(req, res) {
-  let {email, password} = req.body;
-
-  userController.add({
-    email: email,
-    password: bcrypt.hashSync(password)
-  }).then((user) => {
+function getMyDetails(req, res) {
+  let userId = req.uid;
+  userController.getUserByUserId(userId).then((items) => {
     return res.status(200).send({
-      msg: 'User created successfully!',
-      token: jwtController.generateToken({
-        userId: user._id
-      }),
-      profile_url: user.gravatar_url
+      data: items
     });
-  }).catch(err => {
-    console.log('err', err);
+  }).catch((err) => {
     return res.status(500).send({
-      errors: {
-        msg: err.message
-      }
+      msg: err
     });
   });
 }
 
-function login(req, res) {
-  let {email, password} = req.body;
+function changePassword(req, res) {
+  let {email, password, new_password} = req.body;
+
+  if (password === new_password) {
+    return res.status(200).send({
+      msg: 'New and the current password cant be the same'
+    });
+  }
 
   userController.getUserByEmail(email).then((userObj) => {
     let saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, saltedPwd, (err, isEqual) => {
         if (!isEqual) {
-          return reject('Invalid email/password');
+          return reject('Invalid password');
         }
         return resolve(userObj);
       });
+    });
+  }).then(() => {
+    return userController.updatePassword({
+      email: email,
+      password: bcrypt.hashSync(new_password)
     });
   }).then((userObj) => {
     return res.status(200).send({
@@ -61,14 +59,10 @@ function login(req, res) {
   });
 }
 
-let app = express.Router();
+app.get('/me', security, getMyDetails);
+app.post('/me/reset_password', security, changePassword);
 
-
-let validator = require('../middleware/validator/user-validator');
-
-app.post('/signup', validator, signUp);
-app.post('/login', validator, login);
 
 module.exports = (indexApp) => {
-  indexApp.use('/users', app);
+  indexApp.use('/me', app);
 };

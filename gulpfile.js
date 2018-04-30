@@ -7,7 +7,11 @@ const eslint = require('gulp-eslint');
 const jshint = require('gulp-jshint');
 const runSequence = require('run-sequence');
 
-const SERVER_JS_FILES = 'app/**/*.js';
+const SERVER_JS_FILES = [
+  'app/**/*.js',
+  'config.js',
+  'server.js'
+];
 
 gulp.task('jshint', () => {
   return gulp.src(SERVER_JS_FILES)

@@ -6,7 +6,7 @@
 
 let http = require('http');
 
-let app = require('../application');
+let app = require('../app');
 
 class Server {
 

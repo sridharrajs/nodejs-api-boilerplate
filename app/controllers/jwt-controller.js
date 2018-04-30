@@ -27,7 +27,7 @@ class JWTController {
     if (!token) {
       return null;
     }
-    
+
     try {
       return jwt.decode(token, config.secret);
     } catch (err) {

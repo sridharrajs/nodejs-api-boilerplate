@@ -17,7 +17,11 @@ class UserController {
       password: item.password,
       gravatar_url: gravatar.imageUrl(item.email)
     });
-    return user.save();
+    return user.save().catch(e => {
+      if (e.code === 11000) {
+        throw new Error('This email has an associated account. Try resetting password, instead?');
+      }
+    });
   }
 
   static updatePassword(user) {
