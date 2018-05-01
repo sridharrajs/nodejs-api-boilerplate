@@ -1,0 +1,23 @@
+version: "2"
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    volumes:
+      - dbdata:/data/db
+    ports:
+      - "27018:27017"
+  express_app:
+    container_name: express_app
+    command: npm start
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+
+volumes:
+  dbdata:
+    driver: "local"
+    
