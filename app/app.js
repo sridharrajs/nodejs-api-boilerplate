@@ -22,17 +22,19 @@ app.use(bp.urlencoded({
 }));
 
 app.use(expressValidator());
+app.set('view engine', 'pug');
+app.use(express.static(__dirname + '/public'));
 
 let reqHeaders = require('./middleware/request-header');
 app.use(reqHeaders);
 
 let indexRoutes = require('./routes/index-routes');
-indexRoutes(app);
+app.use('/', indexRoutes);
 
 let userRoutes = require('./routes/user-routes');
-userRoutes(app);
+app.use('/users', userRoutes);
 
 let meRoutes = require('./routes/me-routes');
-meRoutes(app);
+app.use('/users/me', meRoutes);
 
 module.exports = app;

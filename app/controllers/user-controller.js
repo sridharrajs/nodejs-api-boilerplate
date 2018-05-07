@@ -11,11 +11,32 @@ let User = mongoose.model('user');
 
 class UserController {
 
-  static add(item) {
+  static getByVerificationHash(verificationHash) {
+    return User.findOne({
+      verification_hash: verificationHash
+    }).lean();
+  }
+
+  static updateTemporaryPassword(obj) {
+    return User.findOneAndUpdate({
+      _id: obj.id
+    }, {
+      password: obj.password,
+      is_password_required: true
+    }, {
+      upsert: false,
+      new: true
+    }).catch((err) => {
+      console.log('err', err);
+    });
+  }
+
+  static add(data) {
     let user = new User({
-      email: item.email,
-      password: item.password,
-      gravatar_url: gravatar.imageUrl(item.email)
+      email: data.email,
+      password: data.password,
+      gravatar_url: gravatar.imageUrl(data.email),
+      verification_hash: data.verification_hash
     });
     return user.save().catch(e => {
       if (e.code === 11000) {
@@ -33,6 +54,17 @@ class UserController {
       upsert: false,
       new: true
     });
+  }
+
+  static verifyCustomEmailUser(id) {
+    return User.findOneAndUpdate({
+      _id: id
+    }, {
+      is_email_verified: true
+    }, {
+      new: false,
+      upsert: false
+    }).lean();
   }
 
   static getUserByEmail(email) {

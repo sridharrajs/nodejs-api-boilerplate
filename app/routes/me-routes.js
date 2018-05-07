@@ -10,9 +10,9 @@ let jwtController = require('../controllers/jwt-controller');
 
 function getMyDetails(req, res) {
   let userId = req.uid;
-  userController.getUserByUserId(userId).then((items) => {
+  userController.getUserByUserId(userId).then(user => {
     return res.status(200).send({
-      data: items
+      data: user
     });
   }).catch((err) => {
     return res.status(500).send({
@@ -59,10 +59,7 @@ function changePassword(req, res) {
   });
 }
 
-app.get('/me', security, getMyDetails);
-app.post('/me/reset_password', security, changePassword);
+app.get('/', security, getMyDetails);
+app.post('/reset_password', security, changePassword);
 
-
-module.exports = (indexApp) => {
-  indexApp.use('/me', app);
-};
+module.exports = app;

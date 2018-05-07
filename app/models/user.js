@@ -15,9 +15,20 @@ let schema = new Schema({
     required: true,
     type: String
   },
+  verification_hash: {
+    type: String
+  },
   password: {
     required: true,
     type: String
+  },
+  is_password_change_required: {
+    type: Boolean,
+    default: false
+  },
+  is_email_verified: {
+    type: Boolean,
+    default: false
   },
   gravatar_url: {
     type: String,

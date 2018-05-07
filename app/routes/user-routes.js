@@ -5,24 +5,36 @@
 'use strict';
 
 const bcrypt = require('bcrypt-nodejs');
+const generator = require('generate-password');
+const uuidv4 = require('uuid/v4');
+
 const express = require('express');
+let app = express.Router();
 
 let userController = require('../controllers/user-controller');
 let jwtController = require('../controllers/jwt-controller');
+let emailController = require('../controllers/email-controller');
 
 function signUp(req, res) {
   let {email, password} = req.body;
+  let verificationHash = uuidv4();
 
   userController.add({
     email: email,
-    password: bcrypt.hashSync(password)
-  }).then((user) => {
+    password: bcrypt.hashSync(password),
+    verification_hash: verificationHash
+  }).then(user => {
+
+    emailController.sendWelcomeEmail(user.email, verificationHash);
+
     return res.status(200).send({
       msg: 'User created successfully!',
       token: jwtController.generateToken({
         userId: user._id
       }),
-      profile_url: user.gravatar_url
+      profile_url: user.gravatar_url,
+      is_email_verified: user.is_email_verified,
+      is_password_change_required: user.is_password_change_required
     });
   }).catch(err => {
     console.log('err', err);
@@ -52,7 +64,9 @@ function login(req, res) {
       token: jwtController.generateToken({
         userId: userObj._id
       }),
-      profile_url: userObj.gravatar_url
+      profile_url: userObj.gravatar_url,
+      is_email_verified: userObj.is_email_verified,
+      is_password_change_required: userObj.is_password_change_required
     });
   }).catch((msg) => {
     return res.status(403).send({
@@ -61,14 +75,50 @@ function login(req, res) {
   });
 }
 
-let app = express.Router();
+function resetPassword(req, res) {
+  let {email} = req.body;
 
+  userController.getUserByEmail(email).then(user => {
+    if (!user) {
+      return res.status(200).send({
+        is_account_exist: false,
+        msg: 'If the email was a signed up user account, you will receive an email with the temporary password.'
+      });
+    }
+
+    let tempPassword = generator.generate({
+      length: 8,
+      numbers: true,
+      uppercase: true,
+      strict: true
+    });
+
+    userController.updateTemporaryPassword({
+      id: user._id,
+      password: bcrypt.hashSync(tempPassword)
+    });
+
+    return res.status(200).send({
+      is_account_exist: true,
+      msg: 'Please check your inbox for the temporary password'
+    });
+
+  }).catch((err) => {
+    console.log('err', err.stack);
+    return res.status(500).send({
+      errors: {
+        msg: 'error in resetting password for user'
+      }
+    });
+  });
+
+
+}
 
 let validator = require('../middleware/validator/user-validator');
 
 app.post('/signup', validator, signUp);
 app.post('/login', validator, login);
+app.post('/reset-password', resetPassword);
 
-module.exports = (indexApp) => {
-  indexApp.use('/users', app);
-};
+module.exports = app;

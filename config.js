@@ -14,6 +14,11 @@ const ENVS = [
 
 class Config {
 
+  static shouldSentEmail() {
+    return process.env.send_email === 'true';
+  }
+
+
   static isValidEnv(HOST_ENV) {
     return new Promise((resolve, reject) => {
       if (_.includes(ENVS, HOST_ENV)) {

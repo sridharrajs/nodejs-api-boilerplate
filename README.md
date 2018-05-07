@@ -8,9 +8,9 @@ This is a minimalistic Nodejs API boilerplate
 2. `Express 4.13.3`
 3. `Nodejs v8.9.4`
 
-## Deployment
+## Development
 
-1. Set the environment variable `MY_SECRET` for use when generating JWT token
+1. Create a new `.env` file with necessary configuration. You can refer `.env.sample` for the reference
 
 2. Install the dependencies using `npm install`  
 
@@ -18,6 +18,9 @@ This is a minimalistic Nodejs API boilerplate
 
 You need to use [pm2](http://pm2.keymetrics.io/) for deploying nodejs application. Application configurations are in `pm2_configs/` folder
 
+## Third part dependencies
+
+The app uses `node-ses` for sending verification and reset password mail. Feel free to swap out it.
 
 ## License
 
