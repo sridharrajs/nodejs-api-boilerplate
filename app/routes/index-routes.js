@@ -25,7 +25,7 @@ function verify(req, res) {
     });
   }
 
-  userController.getByVerificationHash(verificationHash).then((user) => {
+  userController.getByVerificationHash(verificationHash).then(user => {
     if (!user) {
       return res.render('incorrect', {
         $APP_NAME$: appName
@@ -44,7 +44,7 @@ function verify(req, res) {
       });
     }
 
-  }).catch((err) => {
+  }).catch(err => {
     console.log('err', err);
     return res.render('error');
   });

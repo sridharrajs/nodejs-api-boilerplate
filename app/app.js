@@ -25,16 +25,10 @@ app.use(expressValidator());
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 
-let reqHeaders = require('./middleware/request-header');
-app.use(reqHeaders);
 
-let indexRoutes = require('./routes/index-routes');
-app.use('/', indexRoutes);
-
-let userRoutes = require('./routes/user-routes');
-app.use('/users', userRoutes);
-
-let meRoutes = require('./routes/me-routes');
-app.use('/users/me', meRoutes);
+app.use(require('./middleware/request-header'));
+app.use('/', require('./routes/index-routes'));
+app.use('/users', require('./routes/user-routes'));
+app.use('/users/me', require('./routes/me-routes'));
 
 module.exports = app;

@@ -2,7 +2,7 @@
 
 const ses = require('node-ses');
 let fs = require('fs');
-let config = -require('../../config');
+let config = require('../../config');
 
 const client = ses.createClient({
   key: process.env.MAIL_USERNAME,

@@ -49,7 +49,7 @@ function signUp(req, res) {
 function login(req, res) {
   let {email, password} = req.body;
 
-  userController.getUserByEmail(email).then((userObj) => {
+  userController.getUserByEmail(email).then(userObj => {
     let saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, saltedPwd, (err, isEqual) => {
@@ -59,7 +59,7 @@ function login(req, res) {
         return resolve(userObj);
       });
     });
-  }).then((userObj) => {
+  }).then(userObj => {
     return res.status(200).send({
       token: jwtController.generateToken({
         userId: userObj._id
@@ -68,7 +68,7 @@ function login(req, res) {
       is_email_verified: userObj.is_email_verified,
       is_password_change_required: userObj.is_password_change_required
     });
-  }).catch((msg) => {
+  }).catch(msg => {
     return res.status(403).send({
       msg: msg
     });
@@ -103,7 +103,7 @@ function resetPassword(req, res) {
       msg: 'Please check your inbox for the temporary password'
     });
 
-  }).catch((err) => {
+  }).catch(err => {
     console.log('err', err.stack);
     return res.status(500).send({
       errors: {

@@ -6,7 +6,7 @@ function emailExistValidator(req, res, next) {
   let email = req.body.email;
 
 
-  userController.getUserByEmail(email).then((user) => {
+  userController.getUserByEmail(email).then(user => {
     if (!user) {
       return res.status(400).send({
         msg: 'Email id or password is incorrect'
@@ -14,7 +14,7 @@ function emailExistValidator(req, res, next) {
     }
 
     next();
-  }).catch((err) => {
+  }).catch(err => {
     console.log('err', err.stack);
     return res.status(400).send({
       msg: 'Something failed at server, please try again'

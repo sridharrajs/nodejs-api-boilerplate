@@ -12,10 +12,10 @@
     "url": "git+https://github.com/sridharrajs/nodejs-api-boilerplate.git"
   },
   "engines": {
-    "npm": ">3.0",
+    "npm": ">5.0",
     "node": "6.0"
   },
-  "author": "sridhar <me@sridhar.co>",
+  "author": "sridhar <sridhar@aghenam.com>",
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/sridharrajs/nodejs-api-boilerplate/issues"
@@ -25,6 +25,7 @@
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2",
     "gulp-jshint": "^2.1.0",
+    "nodemon": "^1.18.3",
     "run-sequence": "^1.1.5"
   },
   "dependencies": {

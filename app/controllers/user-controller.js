@@ -26,7 +26,7 @@ class UserController {
     }, {
       upsert: false,
       new: true
-    }).catch((err) => {
+    }).catch(err => {
       console.log('err', err);
     });
   }

@@ -30,7 +30,7 @@ function changePassword(req, res) {
     });
   }
 
-  userController.getUserByEmail(email).then((userObj) => {
+  userController.getUserByEmail(email).then(userObj => {
     let saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, saltedPwd, (err, isEqual) => {
@@ -45,14 +45,14 @@ function changePassword(req, res) {
       email: email,
       password: bcrypt.hashSync(new_password)
     });
-  }).then((userObj) => {
+  }).then(userObj => {
     return res.status(200).send({
       token: jwtController.generateToken({
         userId: userObj._id
       }),
       profile_url: userObj.gravatar_url
     });
-  }).catch((msg) => {
+  }).catch(msg => {
     return res.status(403).send({
       msg: msg
     });
