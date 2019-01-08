@@ -23,8 +23,9 @@ app.use(bp.urlencoded({
 
 app.use(expressValidator());
 app.set('view engine', 'pug');
-app.use(express.static(__dirname + '/public'));
 
+let path = require('path');
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(require('./middleware/request-header'));
 app.use('/', require('./routes/index-routes'));

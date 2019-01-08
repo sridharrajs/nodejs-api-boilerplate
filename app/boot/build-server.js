@@ -15,7 +15,7 @@ class Server {
     return new Promise((resolve, reject) => {
       server.listen(config.port, () => {
         resolve('success');
-      }).on('error', (err) => {
+      }).on('error', err => {
         reject(err);
       });
     });

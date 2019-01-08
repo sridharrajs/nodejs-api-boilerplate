@@ -1,16 +1,24 @@
-#Dependencies
+# Dependencies
 node_modules/
+package-lock.json
+
+# Credentials
 .env
 
-#Webstorm/text editor meta
+# Webstorm/text editor meta
 .idea/
 
-#Distribution
+# Distribution
 dist/
 
-#Emacs
+# Emacs
 *~
 *#
 
-#tern
+# tern
 .tern-port
+
+# VSCode meta folder
+.vscode
+
+
