@@ -1,15 +1,15 @@
 'use strict';
 
-let express = require('express');
-let app = express.Router();
+const express = require('express');
+const app = express.Router();
 const bcrypt = require('bcrypt-nodejs');
 
-let security = require('../middleware/auth-filter');
-let userController = require('../controllers/user-controller');
-let jwtController = require('../controllers/jwt-controller');
+const security = require('../middleware/auth-filter');
+const userController = require('../controllers/user-controller');
+const jwtController = require('../controllers/jwt-controller');
 
 function getMyDetails(req, res) {
-  let userId = req.uid;
+  const userId = req.uid;
   userController.getUserByUserId(userId).then(user => {
     return res.status(200).send({
       data: user
@@ -22,7 +22,7 @@ function getMyDetails(req, res) {
 }
 
 function changePassword(req, res) {
-  let {email, password, new_password} = req.body;
+  const {email, password, new_password} = req.body;
 
   if (password === new_password) {
     return res.status(200).send({
@@ -31,7 +31,7 @@ function changePassword(req, res) {
   }
 
   userController.getUserByEmail(email).then(userObj => {
-    let saltedPwd = userObj.password;
+    const saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, saltedPwd, (err, isEqual) => {
         if (!isEqual) {

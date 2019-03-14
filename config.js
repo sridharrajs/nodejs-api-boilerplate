@@ -4,7 +4,7 @@
 
 'use strict';
 
-let _ = require('lodash');
+const _ = require('lodash');
 
 const ENVS = [
   'production',

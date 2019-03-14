@@ -4,9 +4,9 @@
 
 'use strict';
 
-let jwt = require('jwt-simple');
+const jwt = require('jwt-simple');
 
-let config = require('../../config');
+const config = require('../../config');
 
 function expiresIn(numDays) {
   let dateObj = new Date();

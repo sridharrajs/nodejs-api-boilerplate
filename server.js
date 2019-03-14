@@ -4,9 +4,9 @@
 
 'use strict';
 
-let chalk = require('chalk');
-let config = require('./config');
-let dotenv = require('dotenv').config();
+const chalk = require('chalk');
+const config = require('./config');
+const dotenv = require('dotenv').config();
 
 if (dotenv.error) {
   console.trace(chalk.red('.env file is missing'));

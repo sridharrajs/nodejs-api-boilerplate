@@ -4,7 +4,7 @@
 
 'use strict';
 
-let requireDir = require('require-dir');
+const requireDir = require('require-dir');
 
 class Models {
 
@@ -12,6 +12,6 @@ class Models {
     requireDir('./');
     return Promise.resolve('Success');
   }
-  
+
 }
 module.exports = Models;

@@ -4,10 +4,10 @@
 
 'use strict';
 
-let express = require('express');
-let app = express.Router();
+const express = require('express');
+const app = express.Router();
 
-let userController = require('../controllers/user-controller');
+const userController = require('../controllers/user-controller');
 const APP_NAME = process.env.APP_NAME;
 
 function index(req, res) {
@@ -27,7 +27,7 @@ function index(req, res) {
 
 function verify(req, res) {
 
-  let verificationHash = req.query.token;
+  const verificationHash = req.query.token;
   if (!verificationHash) {
     return res.render('incorrect', {
       $APP_NAME$: APP_NAME

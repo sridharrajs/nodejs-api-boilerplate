@@ -4,10 +4,10 @@
 
 'use strict';
 
-let mongoose = require('mongoose');
-let gravatar = require('nodejs-gravatar');
+const mongoose = require('mongoose');
+const gravatar = require('nodejs-gravatar');
 
-let User = mongoose.model('user');
+const User = mongoose.model('user');
 
 class UserController {
 

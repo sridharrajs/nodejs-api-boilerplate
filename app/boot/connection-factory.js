@@ -4,9 +4,9 @@
 
 'use strict';
 
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-let db = mongoose;
+const db = mongoose;
 
 db.Promise = global.Promise;
 

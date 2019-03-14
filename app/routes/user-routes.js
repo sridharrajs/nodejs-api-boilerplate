@@ -9,15 +9,15 @@ const generator = require('generate-password');
 const uuidv4 = require('uuid/v4');
 
 const express = require('express');
-let app = express.Router();
+const app = express.Router();
 
-let userController = require('../controllers/user-controller');
-let jwtController = require('../controllers/jwt-controller');
-let emailController = require('../controllers/email-controller');
+const userController = require('../controllers/user-controller');
+const jwtController = require('../controllers/jwt-controller');
+const emailController = require('../controllers/email-controller');
 
 function signUp(req, res) {
-  let {email, password} = req.body;
-  let verificationHash = uuidv4();
+  const { email, password } = req.body;
+  const verificationHash = uuidv4();
 
   userController.add({
     email: email,
@@ -47,10 +47,10 @@ function signUp(req, res) {
 }
 
 function login(req, res) {
-  let {email, password} = req.body;
+  const { email, password } = req.body;
 
   userController.getUserByEmail(email).then(userObj => {
-    let saltedPwd = userObj.password;
+    const saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, saltedPwd, (err, isEqual) => {
         if (!isEqual) {
@@ -76,7 +76,7 @@ function login(req, res) {
 }
 
 function resetPassword(req, res) {
-  let {email} = req.body;
+  const { email } = req.body;
 
   userController.getUserByEmail(email).then(user => {
     if (!user) {
@@ -115,7 +115,7 @@ function resetPassword(req, res) {
 
 }
 
-let validator = require('../middleware/validator/user-validator');
+const validator = require('../middleware/validator/user-validator');
 
 app.post('/signup', validator, signUp);
 app.post('/login', validator, login);

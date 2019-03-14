@@ -4,9 +4,9 @@
 
 'use strict';
 
-let http = require('http');
+const http = require('http');
 
-let app = require('../app');
+const app = require('../app');
 
 class Server {
 
@@ -20,7 +20,7 @@ class Server {
       });
     });
   }
-  
+
 }
 
 module.exports = Server;

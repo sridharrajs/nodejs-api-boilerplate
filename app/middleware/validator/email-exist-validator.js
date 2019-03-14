@@ -1,9 +1,9 @@
 'use strict';
 
-let userController = require('../../controllers/user-controller');
+const userController = require('../../controllers/user-controller');
 
 function emailExistValidator(req, res, next) {
-  let email = req.body.email;
+  const email = req.body.email;
 
 
   userController.getUserByEmail(email).then(user => {

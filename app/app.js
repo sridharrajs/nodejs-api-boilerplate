@@ -4,14 +4,14 @@
 
 'use strict';
 
-let bp = require('body-parser');
-let cors = require('cors');
-let express = require('express');
-let compression = require('compression');
-let expressValidator = require('express-validator');
-let helmet = require('helmet');
+const bp = require('body-parser');
+const cors = require('cors');
+const express = require('express');
+const compression = require('compression');
+const expressValidator = require('express-validator');
+const helmet = require('helmet');
 
-let app = express();
+const app = express();
 
 app.use(helmet());
 app.use(cors());
@@ -24,7 +24,7 @@ app.use(bp.urlencoded({
 app.use(expressValidator());
 app.set('view engine', 'pug');
 
-let path = require('path');
+const path = require('path');
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(require('./middleware/request-header'));
