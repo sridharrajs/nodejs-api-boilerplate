@@ -15,7 +15,7 @@ function index(req, res) {
 
   if (APP_NAME === '<Your app name>') {
     title = 'Hello world!';
-    msg = `Please set 'APP_NAME' in env`;
+    msg = 'Please set \'APP_NAME\' in env';
   }
 
   return res.render('index', {

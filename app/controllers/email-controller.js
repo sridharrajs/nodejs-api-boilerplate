@@ -50,7 +50,7 @@ class EmailController {
       to: email,
       from: `admin@${appName}`,
       subject: `Reset your password for ${appName}`,
-      message: resetPasswordLetter.replace('$tempPassword$', tempPassword),
+      message: resetPasswordLetter.replace('$tempPassword$', tempPassword)
     }, err => {
       if (err) {
         console.log('err in sendRestCode()::EmailController ', err);
