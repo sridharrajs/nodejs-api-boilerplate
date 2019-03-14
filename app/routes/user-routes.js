@@ -8,12 +8,11 @@ const bcrypt = require('bcrypt-nodejs');
 const generator = require('generate-password');
 const uuidv4 = require('uuid/v4');
 
-const express = require('express');
-const app = express.Router();
+const router = require('express').Router();
 
-const userController = require('../controllers/user-controller');
-const jwtController = require('../controllers/jwt-controller');
 const emailController = require('../controllers/email-controller');
+const jwtController = require('../controllers/jwt-controller');
+const userController = require('../controllers/user-controller');
 
 function signUp(req, res) {
   const { email, password } = req.body;
@@ -68,9 +67,11 @@ function login(req, res) {
       is_email_verified: userObj.is_email_verified,
       is_password_change_required: userObj.is_password_change_required
     });
-  }).catch(msg => {
+  }).catch(err => {
     return res.status(403).send({
-      msg: msg
+      errors: {
+        msg: err.message
+      }
     });
   });
 }
@@ -117,8 +118,8 @@ function resetPassword(req, res) {
 
 const validator = require('../middleware/validator/user-validator');
 
-app.post('/signup', validator, signUp);
-app.post('/login', validator, login);
-app.post('/reset-password', resetPassword);
+router.post('/signup', validator, signUp);
+router.post('/login', validator, login);
+router.post('/reset-password', resetPassword);
 
-module.exports = app;
+module.exports = router;

@@ -19,7 +19,7 @@ class ConnectionFactory {
     return new Promise((resolve, reject) => {
       db.connection.on('open', () => {
         resolve('SUCCESS');
-      }).on('error', (err) => {
+      }).on('error', err => {
         reject(err);
       });
     });

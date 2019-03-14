@@ -17,7 +17,9 @@ function emailExistValidator(req, res, next) {
   }).catch(err => {
     console.log('err', err.stack);
     return res.status(400).send({
-      msg: 'Something failed at server, please try again'
+      errors: {
+        msg: 'Something failed at server, please try again'
+      }
     });
   });
 

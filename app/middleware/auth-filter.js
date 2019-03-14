@@ -7,12 +7,14 @@
 const jwtController = require('../controllers/jwt-controller');
 
 function authenticate(req, res, next) {
-  let token = req.headers.authorization;
+  const token = req.headers.authorization;
+  const userId = jwtController.decodeToken(token);
 
-  let userId = jwtController.decodeToken(token);
   if (!userId) {
     return res.status(401).send({
-      msg: 'please login'
+      errors: {
+        msg: 'please login'
+      }
     });
   }
 

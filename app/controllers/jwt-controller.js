@@ -31,7 +31,7 @@ class JWTController {
     try {
       return jwt.decode(token, config.secret);
     } catch (err) {
-      console.log('err ', err.stack);
+      console.log('err in decodeToken()::JWTController', err.stack);
     }
   }
 

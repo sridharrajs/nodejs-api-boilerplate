@@ -4,8 +4,7 @@
 
 'use strict';
 
-const express = require('express');
-const app = express.Router();
+const router = require('express').Router();
 
 const userController = require('../controllers/user-controller');
 const APP_NAME = process.env.APP_NAME;
@@ -59,7 +58,7 @@ function verify(req, res) {
   });
 }
 
-app.get('/', index);
-app.get('/verify', verify);
+router.get('/', index);
+router.get('/verify', verify);
 
-module.exports = app;
+module.exports = router;

@@ -1,12 +1,11 @@
 'use strict';
 
-const express = require('express');
-const app = express.Router();
+const router = require('express').Router();
 const bcrypt = require('bcrypt-nodejs');
 
 const security = require('../middleware/auth-filter');
-const userController = require('../controllers/user-controller');
 const jwtController = require('../controllers/jwt-controller');
+const userController = require('../controllers/user-controller');
 
 function getMyDetails(req, res) {
   const userId = req.uid;
@@ -16,13 +15,15 @@ function getMyDetails(req, res) {
     });
   }).catch((err) => {
     return res.status(500).send({
-      msg: err
+      errors: {
+        msg: err
+      }
     });
   });
 }
 
 function changePassword(req, res) {
-  const {email, password, new_password} = req.body;
+  const { email, password, new_password } = req.body;
 
   if (password === new_password) {
     return res.status(200).send({
@@ -52,14 +53,16 @@ function changePassword(req, res) {
       }),
       profile_url: userObj.gravatar_url
     });
-  }).catch(msg => {
+  }).catch(err => {
     return res.status(403).send({
-      msg: msg
+      errors: {
+        msg: err
+      }
     });
   });
 }
 
-app.get('/', security, getMyDetails);
-app.post('/reset_password', security, changePassword);
+router.get('/', security, getMyDetails);
+router.post('/reset_password', security, changePassword);
 
-module.exports = app;
+module.exports = router;

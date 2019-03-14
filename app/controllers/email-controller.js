@@ -2,6 +2,7 @@
 
 const ses = require('node-ses');
 const fs = require('fs');
+
 const config = require('../../config');
 
 const client = ses.createClient({
@@ -9,8 +10,8 @@ const client = ses.createClient({
   secret: process.env.MAIL_PASSWORD
 });
 
-let customLoginTemplate = fs.readFileSync('./app/templates/welcome-custom-login.html', {encoding: 'utf8'});
-let resetPasswordLetter = fs.readFileSync('./app/templates/reset-password.html', {encoding: 'utf8'});
+let customLoginTemplate = fs.readFileSync('./app/templates/welcome-custom-login.html', { encoding: 'utf8' });
+let resetPasswordLetter = fs.readFileSync('./app/templates/reset-password.html', { encoding: 'utf8' });
 
 function buildURL(hash) {
   return `${process.env.BASE_URL_WITH_PROTOCOL}/verify?token=${hash}`;
@@ -31,8 +32,10 @@ class EmailController {
       subject: `Welcome to ${appName}`,
       message: customLoginTemplate.replace('$magic_link$', buildURL(verificationHash))
         .replace('$APP_NAME$', appName)
-    }, function (err, data) {
-      console.log('err', err);
+    }, err => {
+      if (err) {
+        console.log('err in sendWelcomeEmail()::EmailController', err);
+      }
     });
   }
 
@@ -48,8 +51,10 @@ class EmailController {
       from: `admin@${appName}`,
       subject: `Reset your password for ${appName}`,
       message: resetPasswordLetter.replace('$tempPassword$', tempPassword),
-    }, function (err, data) {
-      console.log('err', err);
+    }, err => {
+      if (err) {
+        console.log('err in sendRestCode()::EmailController ', err);
+      }
     });
   }
 
