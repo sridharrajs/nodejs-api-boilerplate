@@ -25,7 +25,7 @@ config.isValidEnv(HOST_ENVIRONMENT).then(info => {
 }).then(info => {
   console.log('Initializing settings ', chalk.blue(info));
   let connectionFactory = require('./app/boot/connection-factory');
-  return connectionFactory.connect(config);
+  return connectionFactory.connect(config.mongodbUrl);
 }).then(info => {
   console.log('Connecting DB ', chalk.blue(info));
   let models = require('./app/models');

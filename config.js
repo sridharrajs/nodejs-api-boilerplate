@@ -9,7 +9,8 @@ const _ = require('lodash');
 const ENVS = [
   'production',
   'development',
-  'local'
+  'local',
+  'test'
 ];
 
 class Config {
