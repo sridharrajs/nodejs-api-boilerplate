@@ -4,9 +4,12 @@ package-lock.json
 
 # Credentials
 .env
+.env.test
 
 # Webstorm/text editor meta
 .idea/
+# VSCode meta folder
+.vscode
 
 # Distribution
 dist/
@@ -18,7 +21,8 @@ dist/
 # tern
 .tern-port
 
-# VSCode meta folder
-.vscode
+#coverage
+.nyc_output
+coverage
 
 
