@@ -14,12 +14,12 @@ describe('*****USER AUTHENTICATION AND AUTHORIZATION*****', () => {
 
     //Success Case.
 
-    it('Happy Case(201), Create a User.', (done) => {
+    it('Happy Case(200), Create a User.', (done) => {
         request(app).post('/users/signup')
             .send({ email: 'foo@bar.com', password: "foobar123" })
             .then((res) => {
                 const { body, status } = res;
-                expect(status).to.equal(201);
+                expect(status).to.equal(200);
                 expect(body).to.contain.property('token');
                 done();
             })

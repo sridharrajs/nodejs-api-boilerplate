@@ -1,5 +1,5 @@
 /**
- * Created by sridharrajs.
+ * Created by ramachandrang.
  */
 
 'use strict';
@@ -16,7 +16,7 @@ class TestFactory extends CF {
   static init() {
     if (dotenv.error) {
       console.trace(chalk.red('.env.test file is missing'));
-      return Promise.reject('.env.test file is missing')
+      return Promise.reject('.env.test file is missing');
     }
 
     return config.isValidEnv(process.env.NODE_ENV).then(info => {

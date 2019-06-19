@@ -26,7 +26,7 @@ function signUp(req, res) {
 
     emailController.sendWelcomeEmail(user.email, verificationHash);
 
-    return res.status(201).send({
+    return res.status(200).send({
       msg: 'User created successfully!',
       token: jwtController.generateToken({
         userId: user._id
