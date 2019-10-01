@@ -11,7 +11,7 @@ const uuidv4 = require('uuid/v4');
 const router = require('express').Router();
 
 const emailController = require('../controllers/email-controller');
-const jwtController = require('../controllers/jwt-controller');
+const jwtController = require('../utils/jwt-utils');
 const userController = require('../controllers/user-controller');
 
 function signUp(req, res) {

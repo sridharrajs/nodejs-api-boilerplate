@@ -32,7 +32,7 @@ class UserController {
   }
 
   static add(data) {
-    let user = new User({
+    const user = new User({
       email: data.email,
       password: data.password,
       gravatar_url: gravatar.imageUrl(data.email),

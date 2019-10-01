@@ -5,7 +5,6 @@ const userController = require('../../controllers/user-controller');
 function emailExistValidator(req, res, next) {
   const email = req.body.email;
 
-
   userController.getUserByEmail(email).then(user => {
     if (!user) {
       return res.status(400).send({

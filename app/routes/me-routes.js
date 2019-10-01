@@ -4,7 +4,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt-nodejs');
 
 const security = require('../middleware/auth-filter');
-const jwtController = require('../controllers/jwt-controller');
+const jwtController = require('../utils/jwt-utils');
 const userController = require('../controllers/user-controller');
 
 function getMyDetails(req, res) {

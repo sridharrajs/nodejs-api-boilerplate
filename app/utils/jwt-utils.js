@@ -9,16 +9,15 @@ const jwt = require('jwt-simple');
 const config = require('../../config');
 
 function expiresIn(numDays) {
-  let dateObj = new Date();
+  const dateObj = new Date();
   return dateObj.setDate(dateObj.getDate() + numDays);
 }
 
-class JWTController {
+class JwtUtils {
 
   static generateToken(userId) {
-    let expires = expiresIn(7);
     return jwt.encode({
-      exp: expires,
+      exp: expiresIn(7),
       data: userId
     }, config.secret);
   }
@@ -37,4 +36,4 @@ class JWTController {
 
 }
 
-module.exports = JWTController;
+module.exports = JwtUtils;

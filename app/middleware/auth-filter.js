@@ -4,7 +4,7 @@
 
 'use strict';
 
-const jwtController = require('../controllers/jwt-controller');
+const jwtController = require('../utils/jwt-utils');
 
 function authenticate(req, res, next) {
   const token = req.headers.authorization;
