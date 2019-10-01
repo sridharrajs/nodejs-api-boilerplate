@@ -6,13 +6,15 @@ This is a minimalistic Nodejs API boilerplate
 
 1. `Mongodb 3.6.3`
 2. `Express 4.13.3`
-3. `Nodejs v8.9.4`
+3. `Nodejs v10.16.1`
 
 ## Development
 
-1. Create a new `.env` file with necessary configuration. You can refer `.env.sample` for the reference
+Create a new `.env` file with necessary configuration. You can refer `.env.sample` for the reference
 
-2. Install the dependencies using `npm install`  
+Install the dependencies
+ 
+    npm i  
 
 ## Deployment
 
