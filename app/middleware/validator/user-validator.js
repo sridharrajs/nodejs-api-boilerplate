@@ -1,4 +1,4 @@
-'use strict';
+
 
 function validateUserInput(req, res, next) {
 

@@ -2,7 +2,7 @@
  * Created by sridharrajs.
  */
 
-'use strict';
+
 
 function setHeaders(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');

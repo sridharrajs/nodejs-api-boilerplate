@@ -2,7 +2,7 @@
  * Created by sridharrajs.
  */
 
-'use strict';
+
 
 const bcrypt = require('bcrypt-nodejs');
 const generator = require('generate-password');

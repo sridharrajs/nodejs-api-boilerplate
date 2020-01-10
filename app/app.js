@@ -2,8 +2,6 @@
  * Created by sridharrajs on 1/6/16.
  */
 
-'use strict';
-
 const bp = require('body-parser');
 const cors = require('cors');
 const express = require('express');

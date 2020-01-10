@@ -2,7 +2,7 @@
  * Created by sridharrajs.
  */
 
-'use strict';
+
 
 const router = require('express').Router();
 

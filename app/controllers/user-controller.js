@@ -2,7 +2,7 @@
  * Created by sridharrajs on 2/3/16.
  */
 
-'use strict';
+
 
 const mongoose = require('mongoose');
 const gravatar = require('nodejs-gravatar');

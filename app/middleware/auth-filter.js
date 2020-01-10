@@ -2,7 +2,7 @@
  * Created by sridharrajs.
  */
 
-'use strict';
+
 
 const jwtController = require('../utils/jwt-utils');
 

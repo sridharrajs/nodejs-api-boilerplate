@@ -2,8 +2,6 @@
  * Created by sridharrajs.
  */
 
-'use strict';
-
 const jwt = require('jwt-simple');
 
 const config = require('../../config');
@@ -32,6 +30,7 @@ class JwtUtils {
     } catch (err) {
       console.log('err in decodeToken()::JWTController', err.stack);
     }
+    return null;
   }
 
 }

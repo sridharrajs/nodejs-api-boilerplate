@@ -1,4 +1,4 @@
-'use strict';
+
 
 const ses = require('node-ses');
 const fs = require('fs');

@@ -28,11 +28,11 @@ config.isValidEnv(HOST_ENVIRONMENT).then(info => {
   return connectionFactory.connect(config.mongodbUrl);
 }).then(info => {
   console.log('Connecting DB ', chalk.blue(info));
-  let models = require('./app/models');
+  let models = require('./app/models');  // eslint-disable-line global-require
   return models.init();
 }).then(info => {
   console.log('Initializing DB ', chalk.blue(info));
-  let appServer = require('./app/boot/build-server');
+  let appServer = require('./app/boot/build-server');  // eslint-disable-line global-require
   return appServer.start(config);
 }).then(info => {
   console.log(`Starting Server at ${chalk.green(config.port)}`, chalk.blue(info));
@@ -45,3 +45,4 @@ config.isValidEnv(HOST_ENVIRONMENT).then(info => {
 process.on('uncaughtException', error => {
   console.trace(error.stack);
 });
+

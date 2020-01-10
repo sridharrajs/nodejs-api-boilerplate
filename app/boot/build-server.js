@@ -2,7 +2,7 @@
  * Created by sridharrajs.
  */
 
-'use strict';
+
 
 const http = require('http');
 
