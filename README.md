@@ -5,7 +5,7 @@ This is a minimalistic Nodejs API boilerplate
 ## Uses
 
 1. `Mongodb 3.6.3`
-2. `Express 4.13.3`
+2. `Express 4.17.1`
 3. `Nodejs v10.16.1`
 
 ## Development

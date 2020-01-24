@@ -2,7 +2,6 @@
  * Created by sridharrajs on 1/6/16.
  */
 
-const bp = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const compression = require('compression');
@@ -14,9 +13,9 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(compression());
-app.use(bp.json());
-app.use(bp.urlencoded({
-  extended: false
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false,
 }));
 
 app.use(expressValidator());
