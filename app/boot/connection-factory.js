@@ -14,25 +14,28 @@ class ConnectionFactory {
 
   static connect(mongodbUrl) {
     db.connect(mongodbUrl, {
-      useMongoClient: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
     return new Promise((resolve, reject) => {
       db.connection.on('open', () => {
         resolve('CONNECTION SUCCESS');
-      }).on('error', err => {
-        reject(err);
-      });
+      })
+        .on('error', err => {
+          reject(err);
+        });
     });
   }
 
-  static disconnect(){
+  static disconnect() {
     db.connection.close();
     return new Promise((resolve, reject) => {
       db.connection.on('disconnected', () => {
         resolve('DISCONNECT SUCCESS');
-      }).on('error', err => {
-        reject(err);
-      });
+      })
+        .on('error', err => {
+          reject(err);
+        });
     });
   }
 
