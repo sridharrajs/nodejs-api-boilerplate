@@ -1,5 +1,3 @@
-
-
 function validateUserInput(req, res, next) {
 
   req.checkBody('email').exists().withMessage('Email id is required');
@@ -10,15 +8,14 @@ function validateUserInput(req, res, next) {
     return value && value.length >= 8;
   }).withMessage('A password should at least be 8 characters');
 
-  let errors = req.validationErrors();
+  const errors = req.validationErrors();
   if (errors && errors.length > 0) {
     return res.status(422).send({
-      errors: errors[0]
+      errors: errors[0],
     });
   }
 
   next();
-
 }
 
 module.exports = validateUserInput;

@@ -1,5 +1,3 @@
-
-
 const ses = require('node-ses');
 const fs = require('fs');
 
@@ -10,8 +8,8 @@ const client = ses.createClient({
   secret: process.env.MAIL_PASSWORD
 });
 
-let customLoginTemplate = fs.readFileSync('./app/templates/welcome-custom-login.html', { encoding: 'utf8' });
-let resetPasswordLetter = fs.readFileSync('./app/templates/reset-password.html', { encoding: 'utf8' });
+const customLoginTemplate = fs.readFileSync('./app/templates/welcome-custom-login.html', {encoding: 'utf8'});
+const resetPasswordLetter = fs.readFileSync('./app/templates/reset-password.html', {encoding: 'utf8'});
 
 function buildURL(hash) {
   return `${process.env.BASE_URL_WITH_PROTOCOL}/verify?token=${hash}`;
@@ -24,7 +22,7 @@ class EmailController {
       return console.log(`Sending email to ${email} => stopped due to configuration`);
     }
 
-    let appName = process.env.APP_NAME;
+    const appName = process.env.APP_NAME;
 
     client.sendEmail({
       to: email,
@@ -44,7 +42,7 @@ class EmailController {
       return console.log(`Sending email to ${email} => stopped due to configuration`);
     }
 
-    let appName = process.env.APP_NAME;
+    const appName = process.env.APP_NAME;
 
     client.sendEmail({
       to: email,

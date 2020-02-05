@@ -2,8 +2,6 @@
  * Created by sridharrajs.
  */
 
-
-
 const bcrypt = require('bcrypt-nodejs');
 const generator = require('generate-password');
 const uuidv4 = require('uuid/v4');
@@ -14,15 +12,17 @@ const emailController = require('../controllers/email-controller');
 const jwtController = require('../utils/jwt-utils');
 const userController = require('../controllers/user-controller');
 
+const validator = require('../middleware/validator/user-validator');
+
 function signUp(req, res) {
-  const { email, password } = req.body;
+  const {email, password} = req.body;
   const verificationHash = uuidv4();
 
   userController.add({
-    email: email,
+    email,
     password: bcrypt.hashSync(password),
     verification_hash: verificationHash
-  }).then(user => {
+  }).then((user) => {
 
     emailController.sendWelcomeEmail(user.email, verificationHash);
 
@@ -35,51 +35,51 @@ function signUp(req, res) {
       is_email_verified: user.is_email_verified,
       is_password_change_required: user.is_password_change_required
     });
-  }).catch(err => {
+  }).catch((err) => {
     console.log('err', err);
     return res.status(500).send({
       errors: {
-        msg: err.message
+        msg: err.message,
       }
     });
   });
 }
 
 function login(req, res) {
-  const { email, password } = req.body;
+  const {email, password} = req.body;
 
-  userController.getUserByEmail(email).then(userObj => {
+  userController.getUserByEmail(email).then((userObj) => {
     const saltedPwd = userObj.password;
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, saltedPwd, (err, isEqual) => {
         if (!isEqual) {
-          return reject('Invalid email/password');
+          return reject(new Error('Invalid email/password'));
         }
         return resolve(userObj);
       });
     });
-  }).then(userObj => {
+  }).then((userObj) => {
     return res.status(200).send({
       token: jwtController.generateToken({
         userId: userObj._id
       }),
       profile_url: userObj.gravatar_url,
       is_email_verified: userObj.is_email_verified,
-      is_password_change_required: userObj.is_password_change_required
+      is_password_change_required: userObj.is_password_change_required,
     });
-  }).catch(err => {
+  }).catch((err) => {
     return res.status(403).send({
       errors: {
-        msg: err.message
+        msg: err.message,
       }
     });
   });
 }
 
 function resetPassword(req, res) {
-  const { email } = req.body;
+  const {email} = req.body;
 
-  userController.getUserByEmail(email).then(user => {
+  userController.getUserByEmail(email).then((user) => {
     if (!user) {
       return res.status(200).send({
         is_account_exist: false,
@@ -87,7 +87,7 @@ function resetPassword(req, res) {
       });
     }
 
-    let tempPassword = generator.generate({
+    const tempPassword = generator.generate({
       length: 8,
       numbers: true,
       uppercase: true,
@@ -103,20 +103,15 @@ function resetPassword(req, res) {
       is_account_exist: true,
       msg: 'Please check your inbox for the temporary password'
     });
-
-  }).catch(err => {
+  }).catch((err) => {
     console.log('err', err.stack);
     return res.status(500).send({
       errors: {
-        msg: 'error in resetting password for user'
-      }
+        msg: 'error in resetting password for user',
+      },
     });
   });
-
-
 }
-
-const validator = require('../middleware/validator/user-validator');
 
 router.post('/signup', validator, signUp);
 router.post('/login', validator, login);

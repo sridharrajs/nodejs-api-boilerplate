@@ -2,15 +2,13 @@
  * Created by sridharrajs on 1/6/16.
  */
 
-'use strict';
-
 const _ = require('lodash');
 
 const ENVS = [
   'production',
   'development',
   'local',
-  'test'
+  'test',
 ];
 
 class Config {
@@ -25,7 +23,7 @@ class Config {
       if (_.includes(ENVS, HOST_ENV)) {
         resolve('Success');
       } else {
-        reject({message: 'Failed'});
+        reject(new Error('Failed'));
       }
     });
   }
@@ -35,7 +33,7 @@ class Config {
       if (MY_SECRET) {
         resolve('Success');
       } else {
-        reject({message: 'Set MY_SECRET in .env file'});
+        reject(new Error('Set MY_SECRET in .env file'));
       }
     });
   }

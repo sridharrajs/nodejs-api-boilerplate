@@ -2,8 +2,6 @@
  * Created by sridharrajs.
  */
 
-
-
 const jwtController = require('../utils/jwt-utils');
 
 function authenticate(req, res, next) {
@@ -13,8 +11,8 @@ function authenticate(req, res, next) {
   if (!userId) {
     return res.status(401).send({
       errors: {
-        msg: 'please login'
-      }
+        msg: 'please login',
+      },
     });
   }
 

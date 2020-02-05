@@ -2,8 +2,6 @@
  * Created by sridharrajs on 1/13/16.
  */
 
-
-
 const mongoose = require('mongoose');
 
 const db = mongoose;
@@ -20,10 +18,9 @@ class ConnectionFactory {
     return new Promise((resolve, reject) => {
       db.connection.on('open', () => {
         resolve('CONNECTION SUCCESS');
-      })
-        .on('error', err => {
-          reject(err);
-        });
+      }).on('error', (err) => {
+        reject(err);
+      });
     });
   }
 
@@ -32,10 +29,9 @@ class ConnectionFactory {
     return new Promise((resolve, reject) => {
       db.connection.on('disconnected', () => {
         resolve('DISCONNECT SUCCESS');
-      })
-        .on('error', err => {
-          reject(err);
-        });
+      }).on('error', (err) => {
+        reject(err);
+      });
     });
   }
 

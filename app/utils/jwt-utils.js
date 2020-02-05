@@ -16,7 +16,7 @@ class JwtUtils {
   static generateToken(userId) {
     return jwt.encode({
       exp: expiresIn(7),
-      data: userId
+      data: userId,
     }, config.secret);
   }
 

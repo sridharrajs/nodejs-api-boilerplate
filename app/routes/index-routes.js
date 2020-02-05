@@ -2,12 +2,10 @@
  * Created by sridharrajs.
  */
 
-
-
 const router = require('express').Router();
-
 const userController = require('../controllers/user-controller');
-const APP_NAME = process.env.APP_NAME;
+
+const { APP_NAME } = process.env;
 
 function index(req, res) {
   let title = APP_NAME;
@@ -19,40 +17,38 @@ function index(req, res) {
   }
 
   return res.render('index', {
+    msg,
     $APP_NAME$: title,
-    msg: msg
   });
 }
 
 function verify(req, res) {
-
-  const verificationHash = req.query.token;
+  const { token: verificationHash } = req.query;
   if (!verificationHash) {
     return res.render('incorrect', {
-      $APP_NAME$: APP_NAME
+      $APP_NAME$: APP_NAME,
     });
   }
 
-  userController.getByVerificationHash(verificationHash).then(user => {
+  userController.getByVerificationHash(verificationHash).then((user) => {
     if (!user) {
       return res.render('incorrect', {
-        $APP_NAME$: APP_NAME
+        $APP_NAME$: APP_NAME,
       });
     }
 
     if (user.verification_hash === verificationHash) {
-      userController.verifyCustomEmailUser(user._id).then(() => {
+      return userController.verifyCustomEmailUser(user._id).then(() => {
         return res.render('verified', {
-          $APP_NAME$: APP_NAME
+          $APP_NAME$: APP_NAME,
         });
-      });
-    } else {
-      return res.render('incorrect', {
-        $APP_NAME$: APP_NAME
       });
     }
 
-  }).catch(err => {
+    return res.render('incorrect', {
+      $APP_NAME$: APP_NAME,
+    });
+  }).catch((err) => {
     console.log('err', err);
     return res.render('error');
   });
