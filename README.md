@@ -15,6 +15,14 @@ Create a new `.env` file with necessary configuration. You can refer `.env.sampl
 Install the dependencies
  
     npm i  
+    
+To start the server to serve API. 
+
+    npm start
+    
+For development,
+
+    npm run dev
 
 ## Deployment
 

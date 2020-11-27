@@ -6,7 +6,8 @@
   "scripts": {
     "clean:coverage": "rimraf .nyc_output coverage",
     "test": "npm run clean:coverage && nyc --reporter=html mocha --recursive --exit --timeout 10000",
-    "start": "node-inspector & nodemon --inspect server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,7 @@
     "npm": ">5.0",
     "node": "10.16.0"
   },
-  "author": "sridhar <sridhar@aghenam.com>",
+  "author": "sridharrajs",
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/sridharrajs/nodejs-api-boilerplate/issues"
@@ -35,8 +36,8 @@
     "gulp-eslint": "^4.0.2",
     "gulp-jshint": "^2.1.0",
     "mocha": "^6.1.4",
-    "mongodb-memory-server-core": "^6.2.3",
-    "nodemon": "^1.18.3",
+    "mongodb-memory-server-core": "^6.9.2",
+    "nodemon": "^1.19.4",
     "nyc": "^14.1.1",
     "rimraf": "^2.6.3",
     "run-sequence": "^1.1.5",
