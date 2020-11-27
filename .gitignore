@@ -7,20 +7,15 @@ node_modules/
 
 # Webstorm/text editor meta
 .idea/
-# VSCode meta folder
 .vscode
+*~
+*#
+.tern-port
 
 # Distribution
 dist/
 
-# Emacs
-*~
-*#
-
-# tern
-.tern-port
-
-#coverage
+# Test coverage
 .nyc_output
 coverage
 

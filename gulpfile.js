@@ -10,7 +10,7 @@ const runSequence = require('run-sequence');
 const SERVER_JS_FILES = [
   'app/**/*.js',
   'config.js',
-  'server.js'
+  'index.js'
 ];
 
 gulp.task('jshint', () => {

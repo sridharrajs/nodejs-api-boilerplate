@@ -2,12 +2,10 @@
  * Created by sridharrajs.
  */
 
-
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let schema = new Schema({
+const schema = new Schema({
   email: {
     lowercase: true,
     trim: true,

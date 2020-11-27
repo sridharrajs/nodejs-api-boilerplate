@@ -18,24 +18,21 @@ class Config {
   }
 
 
-  static isValidEnv(HOST_ENV) {
-    return new Promise((resolve, reject) => {
-      if (_.includes(ENVS, HOST_ENV)) {
-        resolve('Success');
-      } else {
-        reject(new Error('Failed'));
-      }
-    });
-  }
+  static assertEnvironment(dotEnv) {
+    const { MY_SECRET, NODE_ENV } = process.env;
 
-  static isSecretSet(MY_SECRET) {
-    return new Promise((resolve, reject) => {
-      if (MY_SECRET) {
-        resolve('Success');
-      } else {
-        reject(new Error('Set MY_SECRET in .env file'));
-      }
-    });
+    if (!ENVS.includes(NODE_ENV)) {
+      return Promise.reject(new Error('Environment is not set'));
+    }
+
+    if (!MY_SECRET) {
+      return Promise.reject(new Error('Set MY_SECRET in .env file'));
+    }
+
+    if (dotEnv.error) {
+      return Promise.reject(new Error('.env file is missing'));
+    }
+    return Promise.resolve('SUCCESS');
   }
 
   static init() {
@@ -43,7 +40,7 @@ class Config {
     this.secure = process.env.SECURE;
     this.mongodbUrl = process.env.MONGODB_URL;
     this.secret = process.env.MY_SECRET;
-    return Promise.resolve('Success');
+    return Promise.resolve('SUCCESS');
   }
 }
 
