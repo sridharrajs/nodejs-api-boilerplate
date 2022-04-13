@@ -46,7 +46,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "async": "^1.5.1",
+    "async": "^3.2.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
     "chalk": "^1.1.1",
